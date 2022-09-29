@@ -1,14 +1,17 @@
-import instance from "./axios"
+import instance from "./axios";
 
-export const getIps = (data?: object) => {
-  return instance.get("/ips", { params: data })
-}
-export const createIp = (data?: object) => {
-  return instance.post("/ips", data)
-}
-export const updateIp = (id: string, data?: object) => {
-  return instance.put("/ips/" + id, data)
-}
-export const deleteIp = (id: string) => {
-  return instance.delete("/ips/" + id)
-}
+export const getWhitelists = (data?: object) => {
+  return instance.get("/whitelists/getWhitelists", { params: data });
+};
+export const createWhitelist = (data: object) => {
+  return instance.post("/whitelists/createWhitelist", data);
+};
+export const updateWhitelist = (id: string, data?: object) => {
+  return instance.post("/whitelists/updateWhitelist", {
+    whitelistId: id,
+    ...data,
+  });
+};
+export const deleteWhitelist = (id: string) => {
+  return instance.post("/whitelists/deleteWhitelist", { whitelistId: id });
+};
