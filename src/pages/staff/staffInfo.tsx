@@ -1,76 +1,86 @@
-import type { IFilterStaff, IStaff } from "./type"
-import { TablePaginationConfig, TableColumnsType, Input, Select } from "antd"
-import { Switch, Card, Table, Button, message } from "antd"
+import type { IFilterStaff, IStaff } from "./type";
+import { TablePaginationConfig, TableColumnsType, Input, Select } from "antd";
+import { Switch, Card, Table, Button, message } from "antd";
 
-import FilterAction from "../../components/filterAction"
-import StaffDetailModal from "./components/staffDetailModal"
-import { StaffApi } from "../../api"
-import { useFilter, useModal, usePageInfoFilterEffect, useSelectedItem, useTablePagination } from "../../hooks"
-import useData from "../../hooks/useData"
-import useLoading from "../../hooks/useLoading"
-import { createFormItems } from "../../components/form/formConfig"
-import { useState } from "react"
-import { User, PhoneCall } from "phosphor-react"
-import ResetPasswordModal from "./components/resetPasswordModal"
+import FilterAction from "../../components/filterAction";
+import StaffDetailModal from "./components/staffDetailModal";
+import { StaffApi } from "../../api";
+import {
+  useFilter,
+  useModal,
+  usePageInfoFilterEffect,
+  useSelectedItem,
+  useTablePagination,
+} from "../../hooks";
+import useData from "../../hooks/useData";
+import useLoading from "../../hooks/useLoading";
+import { createFormItems } from "../../components/form/formConfig";
+import { useState } from "react";
+import { User, PhoneCall } from "phosphor-react";
+import ResetPasswordModal from "./components/resetPasswordModal";
 
 export const statusOptions = [
   { label: "Active", value: "active" },
   { label: "Inactive", value: "inactive" },
-]
+];
 
 export default () => {
-  const { filter, setFilter } = useFilter<IFilterStaff>({})
-  const { pagination, setPagination } = useTablePagination()
-  const { selectedItem, setSelectedItem } = useSelectedItem<IStaff>({})
-  const { modal, setModal } = useModal({})
-  const { modal: resetPasswordModal, setModal: setResetPasswordModal } = useModal({})
-  const { data, setData } = useData<IStaff[]>()
-  const { loading, setLoading } = useLoading(false)
-  const [roleOptions, setRoleOptions] = useState([])
+  const { filter, setFilter } = useFilter<IFilterStaff>({});
+  const { pagination, setPagination } = useTablePagination();
+  const { selectedItem, setSelectedItem } = useSelectedItem<IStaff>({});
+  const { modal, setModal } = useModal({});
+  const { modal: resetPasswordModal, setModal: setResetPasswordModal } =
+    useModal({});
+  const { data, setData } = useData<IStaff[]>();
+  const { loading, setLoading } = useLoading(false);
+  const [roleOptions, setRoleOptions] = useState([]);
 
-  const getInfo = async (paginationProp?: TablePaginationConfig, allRoles = 0) => {
+  const getInfo = async (
+    paginationProp?: TablePaginationConfig,
+    allRoles = 0
+  ) => {
     try {
-      setLoading(true)
+      setLoading(true);
       const res: unknown = await StaffApi.getStaffs({
         ...filter,
         allRoles,
         current: paginationProp?.current || pagination.current,
         pageSize: paginationProp?.pageSize || pagination.pageSize,
-      })
+      });
       // const { items = [], total, roles = [] } = res
-      const { items = [], total, roles = [] } = res
-      setLoading(false)
-      setData(items)
+      const { items = [], total, roles = [] } = res;
+      setLoading(false);
+      setData(items);
       if (roles.length) {
         setRoleOptions(
           roles.map((item) => {
-            return { label: item?.name, value: item?._id }
+            return { label: item?.name, value: item?._id };
           })
-        )
+        );
       }
-      setPagination({ ...pagination, ...(paginationProp || {}), total })
+      setPagination({ ...pagination, ...(paginationProp || {}), total });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const handleOk = async () => {
-    const { name, username, role } = selectedItem
-    if (!username || !name || !role) {
-      return message.error("Please finish all required info")
+    const { name, username, roleId } = selectedItem;
+    if (!username || !name || !roleId) {
+      return message.error("Please finish all required info");
     }
     try {
       if (selectedItem._id) {
-        await StaffApi.updateStaff(selectedItem._id, selectedItem)
+        await StaffApi.updateStaff(selectedItem._id, selectedItem);
       } else {
-        await StaffApi.createStaff(selectedItem)
+        await StaffApi.createStaff(selectedItem);
       }
-      setModal({ ...modal, visible: false })
-      await getInfo() // re-get the data
+      setModal({ ...modal, visible: false });
+      await getInfo(); // re-get the data
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const columns: TableColumnsType<IStaff> = [
     {
@@ -82,14 +92,14 @@ export default () => {
             <User size={20} />
             <div>{record?.name}</div>
           </div>
-        )
+        );
       },
     },
     {
       title: "Username",
       dataIndex: "username",
       render: (_, record) => {
-        return <>{record?.username}</>
+        return <>{record?.username}</>;
       },
     },
     {
@@ -99,8 +109,8 @@ export default () => {
         return (
           <Button
             onClick={() => {
-              setSelectedItem({ ...record })
-              setResetPasswordModal({ ...resetPasswordModal, visible: true })
+              setSelectedItem({ ...record });
+              setResetPasswordModal({ ...resetPasswordModal, visible: true });
             }}
             danger
             type="primary"
@@ -108,7 +118,7 @@ export default () => {
           >
             Reset
           </Button>
-        )
+        );
       },
     },
     {
@@ -120,7 +130,7 @@ export default () => {
             <PhoneCall size={20} />
             <div>{record?.phone}</div>
           </div>
-        )
+        );
       },
     },
     {
@@ -132,11 +142,11 @@ export default () => {
             try {
               await StaffApi.updateStaff(record._id, {
                 status: (value && "active") || "inactive",
-              })
+              });
               // 这里还需要获取就有点难受。 应该是响应式的数据，可以直接 record.status 改变
-              await getInfo()
+              await getInfo();
             } catch (error) {
-              console.log(error)
+              console.log(error);
             }
           }}
           checked={record.status == "active"}
@@ -149,7 +159,7 @@ export default () => {
       title: "Role",
       dataIndex: "role",
       render: (text, record) => {
-        return <>{record?.roleInfo?.name}</>
+        return <>{record?.roleInfo?.name}</>;
       },
     },
     {
@@ -157,9 +167,9 @@ export default () => {
       render: (text, record) => (
         <a
           onClick={() => {
-            console.log(record)
-            setSelectedItem({ ...record })
-            setModal({ ...modal, visible: true, title: "Edit" })
+            console.log(record);
+            setSelectedItem({ ...record });
+            setModal({ ...modal, visible: true, title: "Edit" });
           }}
         >
           Detail
@@ -167,13 +177,15 @@ export default () => {
       ),
     },
   ].map((item) => {
-    return { ...item, key: item.dataIndex }
-  })
+    return { ...item, key: item.dataIndex };
+  });
 
   // useEffect(() => {
   //   getInfo({ ...pagination, current: 1 }, 1)
   // }, [filter])
-  usePageInfoFilterEffect(filter, () => getInfo({ ...pagination, current: 1 }, 1))
+  usePageInfoFilterEffect(filter, () =>
+    getInfo({ ...pagination, current: 1 }, 1)
+  );
 
   return (
     <div>
@@ -186,7 +198,9 @@ export default () => {
               children: (
                 <Input
                   value={filter.name}
-                  onChange={(e) => setFilter({ ...filter, name: e.target.value })}
+                  onChange={(e) =>
+                    setFilter({ ...filter, name: e.target.value })
+                  }
                   placeholder="username/name/phone"
                 />
               ),
@@ -203,15 +217,19 @@ export default () => {
               ),
             },
           ])}
-          <FilterAction className="mb-0" onQuery={() => getInfo()} onReset={() => setFilter({})} />
+          <FilterAction
+            className="mb-0"
+            onQuery={() => getInfo()}
+            onReset={() => setFilter({})}
+          />
         </div>
       </Card>
       <Card
         title={
           <Button
             onClick={() => {
-              setModal({ ...modal, title: "Add", visible: true })
-              setSelectedItem({})
+              setModal({ ...modal, title: "Add", visible: true });
+              setSelectedItem({});
             }}
             type="primary"
           >
@@ -239,14 +257,14 @@ export default () => {
       <ResetPasswordModal
         onFinish={async (value) => {
           try {
-            await StaffApi.resetPassword(selectedItem._id, value)
-            setResetPasswordModal({ ...resetPasswordModal, visible: false })
+            await StaffApi.resetPassword(selectedItem._id, value);
+            setResetPasswordModal({ ...resetPasswordModal, visible: false });
           } catch (error) {
-            console.log(error)
+            console.log(error);
           }
         }}
         {...resetPasswordModal}
       />
     </div>
-  )
-}
+  );
+};

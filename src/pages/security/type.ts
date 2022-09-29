@@ -1,9 +1,11 @@
 export interface IFilter {
-  name?: string
+  name?: string;
+  type: IWhitelist["type"];
 }
-
-export interface IIp {
-  _id?: string
-  ip?: string
-  desc?: string
+export interface IWhitelist {
+  _id: string;
+  type: "ip" | "account";
+  staffId?: string;
+  desc?: string;
+  ip?: string;
 }
