@@ -1,88 +1,97 @@
-import { Tabs, Input, Button, message, notification } from "antd"
+import { Tabs, Input, Button, message, notification } from "antd";
 
-import { User, Lock, EnvelopeSimple, DeviceMobileSpeaker } from "phosphor-react"
+import {
+  User,
+  Lock,
+  EnvelopeSimple,
+  DeviceMobileSpeaker,
+} from "phosphor-react";
 
-import { useState } from "react"
-import { useNavigate } from "react-router"
-import "./index.css"
-import { StaffApi } from "../../api"
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import "./index.css";
+import { StaffApi } from "../../api";
 
 export function timeFix() {
-  const hour = new Date().getHours()
-  return hour < 12 ? "Good Morning" : hour < 18 ? "Good Afternoon" : "Good Evening"
+  const hour = new Date().getHours();
+  return hour < 12
+    ? "Good Morning"
+    : hour < 18
+    ? "Good Afternoon"
+    : "Good Evening";
 }
 
 const Login = () => {
-  const navigate = useNavigate()
-  const [username, setUsername] = useState("admin")
-  const [password, setPassword] = useState("admin")
-  const [phone, setPhone] = useState("")
-  const [code, setCode] = useState("")
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("admin");
+  const [password, setPassword] = useState("admin");
+  const [phone, setPhone] = useState("");
+  const [code, setCode] = useState("");
 
-  const [loading, setLoading] = useState(false) // login button loading
-  const [tabKey, setTabKey] = useState("username")
+  const [loading, setLoading] = useState(false); // login button loading
+  const [tabKey, setTabKey] = useState("username");
   const [countState, setCountState] = useState({
     smsSendBtn: false, // 转圈圈
     time: 60, // 倒计时60秒
-  })
+  });
 
   const getCode = async () => {
     if (!/^\d{8}$/.test(phone)) {
-      return message.error("Invalid Phone Number")
+      return message.error("Invalid Phone Number");
     }
     try {
-      setLoading(true)
-      await StaffApi.getCode({ phone })
-      message.success("Code sent successfully")
+      setLoading(true);
+      await StaffApi.getCode({ phone });
+      message.success("Code sent successfully");
 
-      setCountState({ smsSendBtn: true, time: 60 })
+      setCountState({ smsSendBtn: true, time: 60 });
       const interval = window.setInterval(() => {
         if (countState.time - 1 <= 0) {
-          setCountState({ smsSendBtn: false, time: 60 })
-          window.clearInterval(interval)
+          setCountState({ smsSendBtn: false, time: 60 });
+          window.clearInterval(interval);
         }
-        setCountState({ smsSendBtn: true, time: countState.time - 1 })
-      }, 1000)
+        setCountState({ smsSendBtn: true, time: countState.time - 1 });
+      }, 1000);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleLogin = async () => {
-    let res: unknown
+    let res: unknown;
     try {
       if (tabKey == "username") {
         if (!username) {
-          return message.error("Please Input Username")
+          return message.error("Please Input Username");
         }
         if (!password) {
-          return message.error("Please Input Password")
+          return message.error("Please Input Password");
         }
-        res = await StaffApi.login({ type: "username", username, password })
+        res = await StaffApi.login({ type: "username", username, password });
       } else {
         if (!phone) {
-          return message.error("Please Input Phone")
+          return message.error("Please Input Phone");
         }
         if (!code) {
-          return message.error("Please Input Code")
+          return message.error("Please Input Code");
         }
-        res = await StaffApi.login({ type: "phone", phone, code })
+        res = await StaffApi.login({ type: "phone", phone, code });
       }
-      console.log(res, "登陆返回信息")
-      localStorage.setItem("authToken", res.token)
-      navigate("/")
+      console.log(res, "登陆返回信息");
+      localStorage.setItem("authToken", res.token);
+      navigate("/");
       setTimeout(() => {
         notification.success({
           message: "👏👏👏Welcome👏👏👏",
           description: `${timeFix()},  Welcome Back `,
-        })
-      }, 1000)
+        });
+      }, 1000);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     // userlayout
@@ -107,7 +116,10 @@ const Login = () => {
           <h1 className="text-center text-5xl">Gganbu Admin</h1>
 
           {/* login form  */}
-          <div className="py-16 px-5 rounded-2xl m-3" style={{ backgroundColor: "rgba(0, 0, 0, 0.1)" }}>
+          <div
+            className="py-16 px-5 rounded-2xl m-3"
+            style={{ backgroundColor: "rgba(0, 0, 0, 0.1)" }}
+          >
             <Tabs type="card" centered onChange={(key) => setTabKey(key)}>
               <Tabs.TabPane key="username" tab="Username">
                 <Input
@@ -153,8 +165,13 @@ const Login = () => {
                     onChange={(e) => setCode(e.target.value)}
                     onPressEnter={() => handleLogin()}
                   />
-                  <Button size="large" className="ml-2 min-h-full" onClick={() => getCode()}>
-                    {(countState.smsSendBtn && `${countState.time}s`) || "Get Code"}
+                  <Button
+                    size="large"
+                    className="ml-2 min-h-full"
+                    onClick={() => getCode()}
+                  >
+                    {(countState.smsSendBtn && `${countState.time}s`) ||
+                      "Get Code"}
                   </Button>
                 </div>
               </Tabs.TabPane>
@@ -183,6 +200,6 @@ const Login = () => {
         <div className=" flex justify-center">Copyright &copy; 2022</div>
       </div>
     </div>
-  )
-}
-export default Login
+  );
+};
+export default Login;

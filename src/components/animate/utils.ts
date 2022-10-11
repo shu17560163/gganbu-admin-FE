@@ -96,7 +96,7 @@ export type IAnimate =
   | "slideOutDown"
   | "slideOutLeft"
   | "slideOutRight"
-  | "slideOutUp"
+  | "slideOutUp";
 
 export const animateNames: IAnimate[] = [
   "bounce",
@@ -211,4 +211,4 @@ export const animateNames: IAnimate[] = [
   "slideOutLeft",
   "slideOutRight",
   "slideOutUp",
-]
+];

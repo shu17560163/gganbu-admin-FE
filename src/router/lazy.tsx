@@ -6,9 +6,9 @@
  *
  */
 
-import { Spin } from "antd"
-import { Suspense } from "react"
-import ErrorBoundary from "../pages/ErrorBoundary"
+import { Spin } from "antd";
+import { Suspense } from "react";
+import ErrorBoundary from "../pages/ErrorBoundary";
 
 const Fallback = () => {
   return (
@@ -17,14 +17,16 @@ const Fallback = () => {
         <Spin></Spin>
       </div>
     </>
-  )
-}
-export default function SuspenseWrapper(LazyComponent: React.LazyExoticComponent<() => JSX.Element>) {
+  );
+};
+export default function SuspenseWrapper(
+  LazyComponent: React.LazyExoticComponent<() => JSX.Element>
+) {
   return () => (
     <>
       <ErrorBoundary>
         <Suspense fallback={<Fallback />}>{<LazyComponent />}</Suspense>
       </ErrorBoundary>
     </>
-  )
+  );
 }

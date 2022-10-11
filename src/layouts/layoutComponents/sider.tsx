@@ -1,12 +1,12 @@
-import type { SiderProps } from "antd"
+import type { SiderProps } from "antd";
 
-import { Layout } from "antd"
-import { useThemeContext } from "../../context"
-import { Logo, Menu, MenuFold } from "../components"
+import { Layout } from "antd";
+import { useThemeContext } from "../../context";
+import { Logo, Menu, MenuFold } from "../components";
 
 export default function Sider(props: SiderProps) {
-  const { theme } = useThemeContext()
-  const { collapsed, layout, showLogo, showCollapse } = theme
+  const { theme } = useThemeContext();
+  const { collapsed, layout, showLogo, showCollapse } = theme;
   return (
     <Layout.Sider trigger={null} collapsible collapsed={collapsed} {...props}>
       {showLogo && layout == "side" && <Logo />}
@@ -37,5 +37,5 @@ export default function Sider(props: SiderProps) {
 
       {showCollapse && <MenuFold />}
     </Layout.Sider>
-  )
+  );
 }

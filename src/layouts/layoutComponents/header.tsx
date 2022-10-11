@@ -1,12 +1,16 @@
-import type { LayoutProps } from "antd"
-import { Layout } from "antd"
-import { useThemeContext } from "../../context"
-import { Menu, Logo, Tags, Bread, Avatar } from "../components"
+import type { LayoutProps } from "antd";
+import { Layout } from "antd";
+import { useThemeContext } from "../../context";
+import { Menu, Logo, Tags, Bread, Avatar } from "../components";
 
-export default function Header({ headerWrapperClass, ...props }: { headerWrapperClass?: string } & LayoutProps) {
-  const { theme } = useThemeContext()
+export default function Header({
+  headerWrapperClass,
+  ...props
+}: { headerWrapperClass?: string } & LayoutProps) {
+  const { theme } = useThemeContext();
 
-  const { fixedHeader, collapsed, layout, showTags, showLogo, showBread } = theme
+  const { fixedHeader, collapsed, layout, showTags, showLogo, showBread } =
+    theme;
 
   return (
     <div
@@ -38,13 +42,17 @@ export default function Header({ headerWrapperClass, ...props }: { headerWrapper
           }),
         }}
       >
-        <>{layout == "side" && <>{(showBread && <Bread />) || <div></div>}</>}</>
+        <>
+          {layout == "side" && <>{(showBread && <Bread />) || <div></div>}</>}
+        </>
 
         <>
           {layout == "mix" && (
             <div className=" flex items-center">
               {showLogo && <Logo />}
-              <div className="pl-5">{(showBread && <Bread />) || <div></div>}</div>
+              <div className="pl-5">
+                {(showBread && <Bread />) || <div></div>}
+              </div>
             </div>
           )}
         </>
@@ -53,7 +61,11 @@ export default function Header({ headerWrapperClass, ...props }: { headerWrapper
           {layout == "top" && (
             <>
               {showLogo && <Logo />}
-              <Menu style={{ backgroundColor: "transparent" }} className="w-full border-0" mode="horizontal" />
+              <Menu
+                style={{ backgroundColor: "transparent" }}
+                className="w-full border-0"
+                mode="horizontal"
+              />
             </>
           )}
         </>
@@ -63,5 +75,5 @@ export default function Header({ headerWrapperClass, ...props }: { headerWrapper
 
       <>{showTags && <Tags />}</>
     </div>
-  )
+  );
 }

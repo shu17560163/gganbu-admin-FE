@@ -1,17 +1,17 @@
-import { Card, Table, Button, PageHeader, Tabs } from "antd"
-import { useState } from "react"
+import { Card, Table, Button, PageHeader, Tabs } from "antd";
+import { useState } from "react";
 
 export default function OrderDetail() {
   // const [data, setData] = useState([])
-  const [tabKey, setTabKey] = useState<string | number>("1")
+  const [tabKey, setTabKey] = useState<string | number>("1");
 
   const historyColumns = [
     { title: "Name", dataIndex: "name" },
     { title: "Desc", dataIndex: "desc" },
     { title: "Time", dataIndex: "time" },
   ].map((item) => {
-    return { ...item, key: item.dataIndex }
-  })
+    return { ...item, key: item.dataIndex };
+  });
 
   return (
     <div>
@@ -34,7 +34,8 @@ export default function OrderDetail() {
           </Tabs>
         }
       >
-        This area place main Info. like, Customer Name, Create Time, Status, etc.
+        This area place main Info. like, Customer Name, Create Time, Status,
+        etc.
       </PageHeader>
 
       {tabKey == "1" && (
@@ -83,5 +84,5 @@ export default function OrderDetail() {
         </>
       )}
     </div>
-  )
+  );
 }

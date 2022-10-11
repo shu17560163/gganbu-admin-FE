@@ -1,8 +1,11 @@
-import { Input, message, Modal, ModalProps } from "antd"
-import { useState } from "react"
+import { Input, message, Modal, ModalProps } from "antd";
+import { useState } from "react";
 
-export default function ResetPasswordModal({ onFinish, ...props }: { onFinish: (v: string) => void } & ModalProps) {
-  const [value, setValue] = useState("")
+export default function ResetPasswordModal({
+  onFinish,
+  ...props
+}: { onFinish: (v: string) => void } & ModalProps) {
+  const [value, setValue] = useState("");
   return (
     <Modal
       destroyOnClose
@@ -10,9 +13,9 @@ export default function ResetPasswordModal({ onFinish, ...props }: { onFinish: (
       {...props}
       onOk={() => {
         if (!value) {
-          return message.error("Please input new password")
+          return message.error("Please input new password");
         }
-        onFinish(value)
+        onFinish(value);
       }}
     >
       <Input
@@ -22,5 +25,5 @@ export default function ResetPasswordModal({ onFinish, ...props }: { onFinish: (
         placeholder="please input new password"
       />
     </Modal>
-  )
+  );
 }

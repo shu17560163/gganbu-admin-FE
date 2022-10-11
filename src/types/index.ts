@@ -1,6 +1,6 @@
 export interface IInfoResponce {
-  items?: object[]
-  total?: number
+  items?: object[];
+  total?: number;
 }
 // export interface IDetailResponce {}
 
