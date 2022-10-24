@@ -119,7 +119,7 @@ export default function Avatar() {
       <Dropdown trigger={["hover"]} overlay={<Menu items={MenuItems} />}>
         <div className="px-2 flex items-center hover:bg-[rgb(0,0,0,0.025)]">
           <AvatarAnt size="large" icon={<User />} />
-          <div className="ml-3 max-w-[80px] text-ellipsis overflow-hidden">
+          <div className=" whitespace-nowrap ml-3 max-w-[80px] text-ellipsis overflow-hidden">
             {user?.name}
           </div>
         </div>
