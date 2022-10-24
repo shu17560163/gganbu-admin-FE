@@ -3,9 +3,11 @@ import { routes } from "./routes";
 import Login from "../pages/login";
 import BasicLayout from "../layouts";
 import { House } from "phosphor-react";
+import InitAdmin from "../pages/initAdmin";
 
 export const ConstantRoutes: IRoute[] = [
   { path: "/login", element: <Login /> },
+  { path: "/initAdmin", element: <InitAdmin /> },
   // { path: "/", title: "Admin", element: <BasicLayout /> },
 ];
 export { routes as AsyncRoutes }; // alias AsyncRoutes
