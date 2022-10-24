@@ -2,10 +2,13 @@ import NotFound from "../pages/404";
 import PageView from "../layouts/layoutComponents/pageView";
 import { Navigate } from "react-router-dom";
 import { IRoute } from "./type";
-import { Gauge, List, ShieldCheck, User } from "phosphor-react";
+import { Gauge, List, ShieldCheck, User, Printer } from "phosphor-react";
 import SuspenseWrapper from "./lazy";
 import { lazy } from "react";
 
+const LoginLogger = SuspenseWrapper(
+  lazy(() => import("../pages/logger/login"))
+);
 const DashBoard = SuspenseWrapper(
   lazy(() => import("../pages/dashboard/index"))
 );
@@ -83,6 +86,20 @@ export const routes: IRoute[] = [
         path: "/staff/roleInfo",
         title: "Role Info",
         element: <RoleInfo />,
+        keepAlive: true,
+      },
+    ],
+  },
+  {
+    path: "/logger",
+    title: "Logger",
+    element: <PageView />,
+    icon: <Printer />,
+    children: [
+      {
+        path: "/logger/login",
+        title: "Login",
+        element: <LoginLogger />,
         keepAlive: true,
       },
     ],
