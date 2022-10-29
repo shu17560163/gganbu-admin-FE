@@ -6,13 +6,13 @@ import { Gauge, List, ShieldCheck, User, Printer } from "phosphor-react"
 import SuspenseWrapper from "./lazy"
 import { lazy } from "react"
 
-const LoginLogger = SuspenseWrapper(lazy(() => import("../pages/logger/login")))
+const LoginLogger = SuspenseWrapper(lazy(() => import("../pages/logger/loginLogger")))
 const DashBoard = SuspenseWrapper(lazy(() => import("../pages/dashboard/index")))
-const StaffInfo = SuspenseWrapper(lazy(() => import("../pages/settings/staff/staffInfo")))
+const StaffInfo = SuspenseWrapper(lazy(() => import("../pages/staff/staffInfo")))
 const IpWhitelist = SuspenseWrapper(lazy(() => import("../pages/security/ipWhitelist")))
 const AccountWhitelist = SuspenseWrapper(lazy(() => import("../pages/security/accountIWhitelist")))
 
-const RoleInfo = SuspenseWrapper(lazy(() => import("../pages/settings/staff/roleInfo")))
+const RoleInfo = SuspenseWrapper(lazy(() => import("../pages/staff/roleInfo")))
 const OrderInfo = SuspenseWrapper(lazy(() => import("../pages/order/orderInfo")))
 const OrderDetail = SuspenseWrapper(lazy(() => import("../pages/order/orderDetail")))
 
