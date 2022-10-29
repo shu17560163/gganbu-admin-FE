@@ -3,7 +3,7 @@ import { routes } from "./routes"
 import Login from "../pages/login"
 import BasicLayout from "../layouts"
 import { House } from "phosphor-react"
-import InitAdmin from "../pages/initAdmin"
+import InitAdmin from "../pages/login/initAdmin"
 
 export const ConstantRoutes: IRoute[] = [
   { path: "/login", element: <Login /> },
