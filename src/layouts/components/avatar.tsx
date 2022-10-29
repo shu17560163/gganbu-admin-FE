@@ -4,20 +4,23 @@ import { Globe, Question, Bell, User } from "phosphor-react"
 import { ArrowsOut, ArrowsIn, MagnifyingGlass } from "phosphor-react"
 
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import { useThemeContext, useUserContext } from "../../context"
+
+const languageMenuItem: MenuProps["items"] = [
+  { label: "English", key: "en" },
+  { label: "简体中文", key: "zh" },
+]
 
 export default function Avatar() {
   const { user, setUser } = useUserContext()
   const { theme, setTheme } = useThemeContext()
 
+  const { t, i18n } = useTranslation()
+
   const { menuStyleBgColor, menuStyle, menuStyleColor, layout, isFullscreen } = theme
 
   const [showSearch, setShowSearch] = useState(false)
-
-  const languageMenuItem: MenuProps["items"] = [
-    { label: "English", key: "english" },
-    { label: "简体中文", key: "chineseSimple" },
-  ]
 
   const Logout = async () => {
     localStorage.removeItem("userInfo")
@@ -96,7 +99,10 @@ export default function Avatar() {
         </div>
       </Tooltip>
 
-      <Dropdown trigger={["hover"]} overlay={<Menu items={languageMenuItem} />}>
+      <Dropdown
+        trigger={["hover"]}
+        overlay={<Menu onClick={({ key }) => i18n.changeLanguage(key)} items={languageMenuItem} />}
+      >
         <div className="px-2 flex items-center hover:bg-[rgb(0,0,0,0.025)] h-full">
           <Globe size={26} />
         </div>

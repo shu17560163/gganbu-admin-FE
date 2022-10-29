@@ -1,4 +1,5 @@
 import { Button, Form, FormItemProps } from "antd"
+import { useTranslation } from "react-i18next"
 
 export interface IFilterActionProps {
   onQuery?: () => void
@@ -18,14 +19,15 @@ export default function FilterAction({
   onReset,
   ...props
 }: IFilterActionProps & FormItemProps) {
+  const { t } = useTranslation()
   return (
     <Form.Item {...props}>
       <div className="flex gap-1 items-center">
         <Button loading={loading} onClick={() => onReset()} className="">
-          Reset
+          {t("RESET")}
         </Button>
         <Button loading={loading} onClick={() => onQuery()} type="primary">
-          Search
+          {t("SEARCH")}
         </Button>
         <a className="ml-2 cursor-pointer" onClick={() => setIsExpand(!isExpand)}>
           {(showExpand && <>{(isExpand && "Collapse") || "Expand"}</>) || <></>}

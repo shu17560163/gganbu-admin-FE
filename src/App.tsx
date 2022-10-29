@@ -2,15 +2,18 @@ import { HashRouter as Router, useRoutes } from "react-router-dom"
 import { useLocation, matchRoutes, useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 import { ConstantRoutes, createRoutesWrapper, createAuthRoutes, IRoute, routes } from "./router"
+
 import { TagContextProvider, useTagContext, useUserContext } from "./context"
 import { UserContextProvider, ThemeContextProvider } from "./context"
 import { AntdConfigProvider } from "./context"
+
+import { StaffApi } from "./api"
 
 import NProgress from "nprogress" // 进度条插件
 import "nprogress/nprogress.css"
 
 import "./config/antd"
-import { StaffApi } from "./api"
+import "./config/locales"
 
 /**
  * here is the entry of router.
