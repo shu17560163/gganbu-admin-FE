@@ -36,20 +36,27 @@ instance.interceptors.response.use(
   },
   async (error) => {
     const status = error.response.status
-    const originalRequest = error.config
-    console.log(error, "看看返回错误", status)
+    const originalRequestConfig = error.config
     if (status === 401) {
       /**
        * refresh token
        * re-send the initial request
        */
-      if (!isRefreshing) {
+      // cache the request
+      if (isRefreshing) {
+        return new Promise((resolve) => {
+          requests.push(() => {
+            resolve(instance(originalRequestConfig))
+          })
+        })
+      } else {
         isRefreshing = true
         return refreshToken()
           .then(async (res: any) => {
             localStorage.setItem("accessToken", res.accessToken)
             localStorage.setItem("refreshToken", res.refreshToken)
-            return instance(originalRequest) // re-send initial request
+            requests.forEach((cb) => cb?.())
+            return instance(originalRequestConfig) // re-send initial request
           })
           .catch((error) => {
             localStorage.removeItem("accessToken")
