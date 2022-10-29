@@ -1,6 +1,6 @@
 import type { IInfoResponce } from "../../types"
 import type { IFilter, IProduct } from "./type"
-import { Input, TableColumnsType, TablePaginationConfig } from "antd"
+import { Form, Input, TableColumnsType, TablePaginationConfig, Upload } from "antd"
 import { message, Modal } from "antd"
 import { Card, Table, Button, Space } from "antd"
 import FilterAction from "../../components/filterAction"
@@ -65,11 +65,9 @@ export default () => {
   usePageInfoFilterEffect(filter, () => getInfo({ ...pagination, current: 1 }))
 
   const columns: TableColumnsType<IProduct> = [
-    { title: "Cover", dataIndex: "cover" },
     { title: "Name", dataIndex: "name" },
-    { title: "Category", dataIndex: "category" },
-    { title: "Remark", dataIndex: "remark" },
-    { title: "Created At", dataIndex: "createdAt" },
+    { title: "Desc", dataIndex: "desc" },
+    { title: "Staff Count", dataIndex: "staffCount" },
     {
       title: "Action",
       dataIndex: "action",
@@ -113,39 +111,42 @@ export default () => {
 
   return (
     <div>
-      <Card className="mb-4">
-        <div className="grid grid-cols-4 gap-4">
-          {createFormItems([
-            {
-              label: "Search",
-              className: "mb-0",
-              children: (
-                <Input
-                  value={filter.name}
-                  onChange={(e) => setFilter({ ...filter, name: e.target.value })}
-                  placeholder="name"
-                />
-              ),
-            },
-          ])}
-          <FilterAction className="mb-0" onQuery={() => getInfo()} onReset={() => setFilter({})} />
-        </div>
-      </Card>
       <Card
-        title={
-          <Button onClick={() => navigate("/product/productCreate")} type="primary">
-            + New Product
-          </Button>
+        title="Create Product"
+        className="mb-4"
+        extra={
+          <>
+            <div className=" flex gap-2 items-center">
+              <Button onClick={() => navigate(-1)}>Cancel</Button>
+              <Button type="primary" htmlType="submit">
+                Save
+              </Button>
+            </div>
+          </>
         }
       >
-        <Table
-          rowKey={(record: IProduct) => record._id}
-          onChange={(pagination) => getInfo(pagination)}
-          pagination={pagination}
-          loading={loading}
-          columns={columns}
-          dataSource={data}
-        />
+        <Form className=" grid grid-cols-2 gap-4 w-1/2">
+          {createFormItems([
+            {
+              label: "Name",
+              required: true,
+              children: <Input></Input>,
+              rules: [{ required: true, message: "Please input product name" }],
+            },
+            {
+              label: "Category",
+              required: true,
+              children: <Input></Input>,
+              rules: [{ required: true, message: "Please input product name" }],
+            },
+            {
+              label: "Cover",
+              required: true,
+              children: <Upload listType="picture-card" fileList={[]} />,
+              rules: [{ required: true, message: "Please upload thumbnail" }],
+            },
+          ])}
+        </Form>
       </Card>
     </div>
   )

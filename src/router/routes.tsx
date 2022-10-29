@@ -2,10 +2,12 @@ import NotFound from "../pages/404"
 import PageView from "../layouts/layoutComponents/pageView"
 import { Navigate } from "react-router-dom"
 import { IRoute } from "./type"
-import { Gauge, List, ShieldCheck, User, Printer } from "phosphor-react"
+import { Gauge, List, ShieldCheck, User, Printer, DiamondsFour } from "phosphor-react"
 import SuspenseWrapper from "./lazy"
 import { lazy } from "react"
 
+const ProductCreate = SuspenseWrapper(lazy(() => import("../pages/product/productCreate")))
+const ProductInfo = SuspenseWrapper(lazy(() => import("../pages/product/productInfo")))
 const LoginLogger = SuspenseWrapper(lazy(() => import("../pages/logger/loginLogger")))
 const DashBoard = SuspenseWrapper(lazy(() => import("../pages/dashboard/index")))
 const StaffInfo = SuspenseWrapper(lazy(() => import("../pages/staff/staffInfo")))
@@ -53,6 +55,27 @@ export const routes: IRoute[] = [
         title: "Order Detail",
         hidden: true,
         element: <OrderDetail />,
+      },
+    ],
+  },
+  {
+    path: "/product",
+    title: "Product",
+    element: <PageView />,
+    icon: <DiamondsFour />,
+    children: [
+      {
+        path: "/product/productInfo",
+        title: "Product Info",
+        element: <ProductInfo />,
+        keepAlive: true,
+      },
+      {
+        path: "/product/productCreate",
+        title: "Product Create",
+        element: <ProductCreate />,
+        keepAlive: true,
+        hidden: true,
       },
     ],
   },
