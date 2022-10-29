@@ -1,19 +1,19 @@
-import type { RouteObject } from "react-router";
-import type { ReactNode } from "react";
+import type { RouteObject } from "react-router"
+import type { ReactNode } from "react"
 
 interface Route extends RouteObject {
-  path?: string;
-  element?: ReactNode;
-  title?: string;
+  path?: string
+  element?: ReactNode
+  title?: string
   /*** for those deteil page and uncesssary for TagsBar/sideBar */
-  hidden?: boolean;
-  icon?: ReactNode;
+  hidden?: boolean
+  icon?: ReactNode
   /*** for header tags,usually only dashboard is true */
-  affix?: boolean;
+  affix?: boolean
   /*** whether keepAlive, usually used in those Info Page */
-  keepAlive?: boolean;
+  keepAlive?: boolean
 }
 
 export interface IRoute extends Route {
-  children?: Route[];
+  children?: Route[]
 }

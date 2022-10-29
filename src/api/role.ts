@@ -1,14 +1,14 @@
-import instance from "./axios";
+import instance from "./axios"
 
 export const getRoles = (data?: object) => {
-  return instance.get("/roles/getRoles", { params: data });
-};
+  return instance.get("/roles/getRoles", { params: data })
+}
 export const createRole = (data: object) => {
-  return instance.post("/roles/createRole", data);
-};
+  return instance.post("/roles/createRole", data)
+}
 export const updateRole = (id: string, data?: object) => {
-  return instance.post("/roles/updateRole", { roleId: id, ...data });
-};
+  return instance.post("/roles/updateRole", { roleId: id, ...data })
+}
 export const deleteRole = (id: string) => {
-  return instance.post("/roles/deleteRole", { roleId: id });
-};
+  return instance.post("/roles/deleteRole", { roleId: id })
+}

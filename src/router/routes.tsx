@@ -1,34 +1,20 @@
-import NotFound from "../pages/404";
-import PageView from "../layouts/layoutComponents/pageView";
-import { Navigate } from "react-router-dom";
-import { IRoute } from "./type";
-import { Gauge, List, ShieldCheck, User, Printer } from "phosphor-react";
-import SuspenseWrapper from "./lazy";
-import { lazy } from "react";
+import NotFound from "../pages/404"
+import PageView from "../layouts/layoutComponents/pageView"
+import { Navigate } from "react-router-dom"
+import { IRoute } from "./type"
+import { Gauge, List, ShieldCheck, User, Printer } from "phosphor-react"
+import SuspenseWrapper from "./lazy"
+import { lazy } from "react"
 
-const LoginLogger = SuspenseWrapper(
-  lazy(() => import("../pages/logger/login"))
-);
-const DashBoard = SuspenseWrapper(
-  lazy(() => import("../pages/dashboard/index"))
-);
-const StaffInfo = SuspenseWrapper(
-  lazy(() => import("../pages/staff/staffInfo"))
-);
-const IpWhitelist = SuspenseWrapper(
-  lazy(() => import("../pages/security/ipWhitelist"))
-);
-const AccountWhitelist = SuspenseWrapper(
-  lazy(() => import("../pages/security/accountIWhitelist"))
-);
+const LoginLogger = SuspenseWrapper(lazy(() => import("../pages/logger/login")))
+const DashBoard = SuspenseWrapper(lazy(() => import("../pages/dashboard/index")))
+const StaffInfo = SuspenseWrapper(lazy(() => import("../pages/settings/staff/staffInfo")))
+const IpWhitelist = SuspenseWrapper(lazy(() => import("../pages/security/ipWhitelist")))
+const AccountWhitelist = SuspenseWrapper(lazy(() => import("../pages/security/accountIWhitelist")))
 
-const RoleInfo = SuspenseWrapper(lazy(() => import("../pages/staff/roleInfo")));
-const OrderInfo = SuspenseWrapper(
-  lazy(() => import("../pages/order/orderInfo"))
-);
-const OrderDetail = SuspenseWrapper(
-  lazy(() => import("../pages/order/orderDetail"))
-);
+const RoleInfo = SuspenseWrapper(lazy(() => import("../pages/settings/staff/roleInfo")))
+const OrderInfo = SuspenseWrapper(lazy(() => import("../pages/order/orderInfo")))
+const OrderDetail = SuspenseWrapper(lazy(() => import("../pages/order/orderDetail")))
 
 // Note: Path shoule be FULL from / to make path is only
 export const routes: IRoute[] = [
@@ -125,6 +111,6 @@ export const routes: IRoute[] = [
     ],
   },
   { path: "*", title: "Not Found", hidden: true, element: <NotFound /> },
-];
+]
 
-export const routesForRoleTree = routes.slice(1, routes.length - 1);
+export const routesForRoleTree = routes.slice(1, routes.length - 1)

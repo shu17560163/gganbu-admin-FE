@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"
 
 export default function Pulse() {
   const variants = {
@@ -12,7 +12,7 @@ export default function Pulse() {
         repeat: Infinity,
       },
     }),
-  };
+  }
 
   return (
     <motion.div className="relative flex items-center justify-center w-8 h-8 mr-3">
@@ -28,8 +28,8 @@ export default function Pulse() {
               custom={index}
               className="w-8 h-8 absolute rounded-[100px] bg-[#008A1B]"
             />
-          );
+          )
         })}
     </motion.div>
-  );
+  )
 }

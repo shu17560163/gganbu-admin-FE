@@ -1,20 +1,20 @@
-import { motion, MotionProps } from "framer-motion";
-import { ReactNode } from "react";
-import { IPreset, presetMotionOptions } from "../presets";
+import { motion, MotionProps } from "framer-motion"
+import { ReactNode } from "react"
+import { IPreset, presetMotionOptions } from "../presets"
 
-import type { WhileInView, ViewPort, Exit } from "./type";
+import type { WhileInView, ViewPort, Exit } from "./type"
 
-type ITrigger = "load" | "scroll";
+type ITrigger = "load" | "scroll"
 
 interface IAppearProps {
-  children?: ReactNode;
-  preset?: IPreset;
-  trigger?: ITrigger;
-  startFrom?: "top" | "middle" | "bottom";
-  scrollAnimate?: "once" | "reset";
-  className?: string;
-  key?: string;
-  motion?: MotionProps; // highest prioprity(tentative)
+  children?: ReactNode
+  preset?: IPreset
+  trigger?: ITrigger
+  startFrom?: "top" | "middle" | "bottom"
+  scrollAnimate?: "once" | "reset"
+  className?: string
+  key?: string
+  motion?: MotionProps // highest prioprity(tentative)
 }
 
 /**
@@ -28,25 +28,23 @@ export default function Appear({
   scrollAnimate = "once",
   className = "",
 }: IAppearProps) {
-  const option =
-    presetMotionOptions.find((i) => i.value == preset) ||
-    presetMotionOptions[0];
+  const option = presetMotionOptions.find((i) => i.value == preset) || presetMotionOptions[0]
 
-  let animate = option.motion.animate;
-  const initial = option.motion.initial;
-  const transition = option.motion.transition;
-  const viewport: ViewPort = { once: scrollAnimate == "once" };
-  const whileInView: WhileInView = {};
-  const exit: Exit = {};
+  let animate = option.motion.animate
+  const initial = option.motion.initial
+  const transition = option.motion.transition
+  const viewport: ViewPort = { once: scrollAnimate == "once" }
+  const whileInView: WhileInView = {}
+  const exit: Exit = {}
   for (const key in initial as object) {
-    exit[key] = initial[key];
+    exit[key] = initial[key]
   }
 
   if (trigger == "scroll") {
     for (const key in animate as object) {
-      whileInView[key] = animate[key];
+      whileInView[key] = animate[key]
     }
-    animate = {};
+    animate = {}
   }
 
   const presetProps: MotionProps = {
@@ -56,12 +54,12 @@ export default function Appear({
     viewport,
     transition,
     exit,
-  };
+  }
   return (
     <motion.div className={className} {...presetProps}>
       {children}
     </motion.div>
-  );
+  )
 }
 
-export type { IPreset, ITrigger };
+export type { IPreset, ITrigger }
