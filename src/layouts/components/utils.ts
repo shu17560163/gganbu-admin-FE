@@ -9,4 +9,4 @@ export const primaryColorOptions = [
   { title: "Meituan", color: "#fcbf00" },
   { title: "Shopee", color: "#fa5931" },
   { title: "Alipay", color: "#1677ff" },
-];
+]

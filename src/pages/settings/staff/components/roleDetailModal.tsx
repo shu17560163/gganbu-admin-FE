@@ -1,15 +1,11 @@
-import { Input, ModalProps } from "antd";
-import type { IRole } from "../type";
-import type { IUseSelectedItemRes } from "../../../hooks/useSelectedItem";
-import { Modal, Tree, Form } from "antd";
-import { routesForRoleTree } from "../../../router";
-import { createFormItems } from "../../../components/form/formConfig";
+import { Input, ModalProps } from "antd"
+import type { IRole } from "../type"
+import type { IUseSelectedItemRes } from "../../../../hooks/useSelectedItem"
+import { Modal, Tree, Form } from "antd"
+import { routesForRoleTree } from "../../../../router"
+import { createFormItems } from "../../../../components/form/formConfig"
 
-export default ({
-  selectedItem,
-  setSelectedItem,
-  ...modal
-}: ModalProps & IUseSelectedItemRes<IRole>) => {
+export default ({ selectedItem, setSelectedItem, ...modal }: ModalProps & IUseSelectedItemRes<IRole>) => {
   return (
     <Modal {...modal} className="min-w-max">
       <Form labelCol={{ span: 3 }}>
@@ -20,9 +16,7 @@ export default ({
             children: (
               <Input
                 value={selectedItem.name}
-                onChange={(e) =>
-                  setSelectedItem({ ...selectedItem, name: e.target.value })
-                }
+                onChange={(e) => setSelectedItem({ ...selectedItem, name: e.target.value })}
               />
             ),
           },
@@ -32,9 +26,7 @@ export default ({
             children: (
               <Input.TextArea
                 value={selectedItem.desc}
-                onChange={(e) =>
-                  setSelectedItem({ ...selectedItem, desc: e.target.value })
-                }
+                onChange={(e) => setSelectedItem({ ...selectedItem, desc: e.target.value })}
               />
             ),
           },
@@ -46,9 +38,7 @@ export default ({
       </div>
       <div className="grid grid-cols-3 mt-5 gap-4 max-h-[40vh] overflow-auto">
         <Tree
-          onCheck={(value: string[]) =>
-            setSelectedItem({ ...selectedItem, routeAuth: value })
-          }
+          onCheck={(value: string[]) => setSelectedItem({ ...selectedItem, routeAuth: value })}
           checkedKeys={selectedItem.routeAuth}
           fieldNames={{ key: "path" }}
           checkable
@@ -60,5 +50,5 @@ export default ({
         </div> */}
       </div>
     </Modal>
-  );
-};
+  )
+}

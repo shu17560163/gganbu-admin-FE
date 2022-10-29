@@ -1,11 +1,11 @@
-import type { IFilter, IWhitelist } from "./type";
-import type { IInfoResponce } from "../../types";
-import { Input, TableColumnsType, TablePaginationConfig } from "antd";
+import type { IFilter, IWhitelist } from "./type"
+import type { IInfoResponce } from "../../types"
+import { Input, TableColumnsType, TablePaginationConfig } from "antd"
 
-import { Card, Table, Button, message, Space, Modal } from "antd";
-import FilterAction from "../../components/filterAction";
-import IpWhiteListDetailModal from "./ipDetail";
-import { WhitelistApi } from "../../api";
+import { Card, Table, Button, message, Space, Modal } from "antd"
+import FilterAction from "../../components/filterAction"
+import IpWhiteListDetailModal from "./ipDetail"
+import { WhitelistApi } from "../../api"
 import {
   useData,
   useFilter,
@@ -14,54 +14,52 @@ import {
   usePageInfoFilterEffect,
   useSelectedItem,
   useTablePagination,
-} from "../../hooks";
-import { createFormItems } from "../../components/form/formConfig";
+} from "../../hooks"
+import { createFormItems } from "../../components/form/formConfig"
 
 export default () => {
-  const { filter, setFilter } = useFilter<IFilter>({ type: "ip" });
-  const { pagination, setPagination } = useTablePagination();
-  const { selectedItem, setSelectedItem } = useSelectedItem<
-    Partial<IWhitelist>
-  >({});
-  const { modal, setModal } = useModal({});
-  const { data, setData } = useData([]);
-  const { loading, setLoading } = useLoading(false);
+  const { filter, setFilter } = useFilter<IFilter>({ type: "ip" })
+  const { pagination, setPagination } = useTablePagination()
+  const { selectedItem, setSelectedItem } = useSelectedItem<Partial<IWhitelist>>({})
+  const { modal, setModal } = useModal({})
+  const { data, setData } = useData([])
+  const { loading, setLoading } = useLoading(false)
 
   const handleOk = async () => {
-    const { ip, desc } = selectedItem;
-    console.log(selectedItem, "看看selectedItem");
+    const { ip, desc } = selectedItem
+    console.log(selectedItem, "看看selectedItem")
     if (!desc || !ip) {
-      return message.error("Please finish all required info");
+      return message.error("Please finish all required info")
     }
     try {
       if (selectedItem._id) {
-        await WhitelistApi.updateWhitelist(selectedItem._id, selectedItem);
+        await WhitelistApi.updateWhitelist(selectedItem._id, selectedItem)
       } else {
-        await WhitelistApi.createWhitelist({ ...selectedItem, type: "ip" });
+        await WhitelistApi.createWhitelist({ ...selectedItem, type: "ip" })
       }
-      setModal({ ...modal, visible: false });
-      await getInfo(); // reget the data
+      setModal({ ...modal, visible: false })
+      await getInfo() // reget the data
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   const getInfo = async (paginationProp?: TablePaginationConfig) => {
     try {
-      setLoading(true);
+      setLoading(true)
       const res: unknown = await WhitelistApi.getWhitelists({
         ...filter,
         current: paginationProp?.current || pagination.current,
         pageSize: paginationProp?.pageSize || pagination.pageSize,
-      });
-      const { items = [], total }: IInfoResponce = res;
-      setLoading(false);
-      setData(items);
-      setPagination({ ...pagination, ...(paginationProp || {}), total });
+      })
+      const { items = [], total }: IInfoResponce = res
+      setLoading(false)
+      setData(items)
+      setPagination({ ...pagination, ...(paginationProp || {}), total })
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   const columns: TableColumnsType<IWhitelist> = [
     { title: "Ip", dataIndex: "ip" },
@@ -72,8 +70,8 @@ export default () => {
         <Space>
           <a
             onClick={() => {
-              setSelectedItem({ ...record });
-              setModal({ ...modal, visible: true, title: "Edit" });
+              setSelectedItem({ ...record })
+              setModal({ ...modal, visible: true, title: "Edit" })
             }}
           >
             Edit
@@ -84,15 +82,15 @@ export default () => {
               Modal.confirm({
                 content: "Sure to delete this item?",
                 onOk: async () => {
-                  console.log(record, 111919);
+                  console.log(record, 111919)
                   try {
-                    await WhitelistApi.deleteWhitelist(record._id);
-                    await getInfo();
+                    await WhitelistApi.deleteWhitelist(record._id)
+                    await getInfo()
                   } catch (error) {
-                    console.log(error);
+                    console.log(error)
                   }
                 },
-              });
+              })
             }}
           >
             Delete
@@ -101,10 +99,10 @@ export default () => {
       ),
     },
   ].map((item) => {
-    return { ...item, key: item.dataIndex };
-  });
+    return { ...item, key: item.dataIndex }
+  })
 
-  usePageInfoFilterEffect(filter, () => getInfo({ ...pagination, current: 1 }));
+  usePageInfoFilterEffect(filter, () => getInfo({ ...pagination, current: 1 }))
 
   return (
     <div>
@@ -117,27 +115,21 @@ export default () => {
               children: (
                 <Input
                   value={filter.name}
-                  onChange={(e) =>
-                    setFilter({ ...filter, name: e.target.value })
-                  }
+                  onChange={(e) => setFilter({ ...filter, name: e.target.value })}
                   placeholder="ip/desc"
                 />
               ),
             },
           ])}
-          <FilterAction
-            className="mb-0"
-            onQuery={() => getInfo()}
-            onReset={() => setFilter({ type: "ip" })}
-          />
+          <FilterAction className="mb-0" onQuery={() => getInfo()} onReset={() => setFilter({ type: "ip" })} />
         </div>
       </Card>
       <Card
         title={
           <Button
             onClick={() => {
-              setModal({ ...modal, title: "Add", visible: true });
-              setSelectedItem({});
+              setModal({ ...modal, title: "Add", visible: true })
+              setSelectedItem({})
             }}
             type="primary"
           >
@@ -161,5 +153,5 @@ export default () => {
         onOk={() => handleOk()}
       />
     </div>
-  );
-};
+  )
+}

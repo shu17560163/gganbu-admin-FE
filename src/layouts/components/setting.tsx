@@ -1,23 +1,23 @@
-import { Checkbox, Radio, Select, Switch, Tooltip } from "antd";
-import { Button, DrawerProps, message, Popover } from "antd";
-import { Drawer, Divider } from "antd";
-import { useMemo, useState } from "react";
-import { useThemeContext } from "../../context";
-import { ChromePicker } from "react-color";
-import copy from "copy-to-clipboard";
+import { Checkbox, Radio, Select, Switch, Tooltip } from "antd"
+import { Button, DrawerProps, message, Popover } from "antd"
+import { Drawer, Divider } from "antd"
+import { useMemo, useState } from "react"
+import { useThemeContext } from "../../context"
+import { ChromePicker } from "react-color"
+import copy from "copy-to-clipboard"
 
-import { X, Gear, Copy } from "phosphor-react";
-import { disable as disableDarkMode } from "darkreader";
-import { presetMotionOptions } from "../../components/presets";
-import { primaryColorOptions } from "./utils";
+import { X, Gear, Copy } from "phosphor-react"
+import { disable as disableDarkMode } from "darkreader"
+import { presetMotionOptions } from "../../components/presets"
+import { primaryColorOptions } from "./utils"
 
 export default function Setting({
   setShowDrawer,
   ...props
 }: {
-  setShowDrawer: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowDrawer: React.Dispatch<React.SetStateAction<boolean>>
 } & DrawerProps) {
-  const { theme, setTheme } = useThemeContext();
+  const { theme, setTheme } = useThemeContext()
 
   const {
     primaryColor,
@@ -33,20 +33,20 @@ export default function Setting({
 
     menuStyle,
     animateName,
-  } = theme;
+  } = theme
 
-  const [pickerColor, setPickerColor] = useState(primaryColor);
-  const width = 400; // drawe width also transform distance of config button
+  const [pickerColor, setPickerColor] = useState(primaryColor)
+  const width = 400 // drawe width also transform distance of config button
 
   const disableItem = useMemo(() => {
-    const { layout, showBread } = theme;
+    const { layout, showBread } = theme
     return {
       showCollapse: layout == "top",
       collapsed: layout == "top",
       // showBread: layout == "top",
       showBreadIcon: !showBread,
-    };
-  }, [theme]);
+    }
+  }, [theme])
 
   const displayCheckOptions = [
     { label: "Tags Bar", value: "showTags" },
@@ -62,7 +62,7 @@ export default function Setting({
       value: "showBreadIcon",
       disabled: disableItem.showBreadIcon,
     },
-  ];
+  ]
   return (
     <>
       <div
@@ -72,8 +72,7 @@ export default function Setting({
           backgroundColor: primaryColor,
           borderRadius: "4px 0 0 4px",
           right: (!props.visible && "0px") || width,
-          transition:
-            "all 0.3s cubic-bezier(.23,1,.32,1),box-shadow .3s cubic-bezier(.23,1,.32,1)",
+          transition: "all 0.3s cubic-bezier(.23,1,.32,1),box-shadow .3s cubic-bezier(.23,1,.32,1)",
         }}
         onClick={() => setShowDrawer(!props.visible)}
         className=" text-white fixed w-12 h-12 cursor-pointer flex items-center justify-center"
@@ -90,8 +89,8 @@ export default function Setting({
           {/* side */}
           <div
             onClick={() => {
-              setTheme({ ...theme, layout: "side" });
-              disableDarkMode();
+              setTheme({ ...theme, layout: "side" })
+              disableDarkMode()
             }}
             className="w-16 h-12 rounded flex items-center cursor-pointer"
             style={{ boxShadow: "0 1px 2.5px 0 rgb(0 0 0 / 18%)" }}
@@ -118,8 +117,8 @@ export default function Setting({
           {/* top */}
           <div
             onClick={() => {
-              setTheme({ ...theme, layout: "top" });
-              disableDarkMode();
+              setTheme({ ...theme, layout: "top" })
+              disableDarkMode()
             }}
             className="w-16 h-12 cursor-pointer rounded"
             style={{ boxShadow: "0 1px 2.5px 0 rgb(0 0 0 / 18%)" }}
@@ -145,7 +144,7 @@ export default function Setting({
           {/* mix */}
           <div
             onClick={() => {
-              setTheme({ ...theme, layout: "mix" });
+              setTheme({ ...theme, layout: "mix" })
               // enableDarkMode({
               //   brightness: 100,
               //   contrast: 90,
@@ -178,20 +177,12 @@ export default function Setting({
 
         <div className="flex justify-between items-center mb-4">
           <div>Fixed Header</div>
-          <Switch
-            checked={fixedHeader}
-            onChange={(value) => setTheme({ ...theme, fixedHeader: value })}
-          />
+          <Switch checked={fixedHeader} onChange={(value) => setTheme({ ...theme, fixedHeader: value })} />
         </div>
 
         <div className="flex justify-between items-center mb-4">
           <div>Content Width</div>
-          <Radio.Group
-            value={contentWidth}
-            onChange={(e) =>
-              setTheme({ ...theme, contentWidth: e.target.value })
-            }
-          >
+          <Radio.Group value={contentWidth} onChange={(e) => setTheme({ ...theme, contentWidth: e.target.value })}>
             <Radio value="fluid">Fluid</Radio>
             <Radio value="fixed">Fixed</Radio>
           </Radio.Group>
@@ -239,21 +230,16 @@ export default function Setting({
         <div className="flex gap-2 flex-wrap m-auto w-full justify-center">
           {primaryColorOptions.map((item) => {
             return (
-              <Tooltip
-                key={item.title || item.color}
-                title={item.title || item.color}
-              >
+              <Tooltip key={item.title || item.color} title={item.title || item.color}>
                 <div
-                  onClick={() =>
-                    setTheme({ ...theme, primaryColor: item.color })
-                  }
+                  onClick={() => setTheme({ ...theme, primaryColor: item.color })}
                   style={{ backgroundColor: item.color }}
                   className=" w-5 h-5 cursor-pointer"
                 >
                   {/* {item.color} */}
                 </div>
               </Tooltip>
-            );
+            )
           })}
         </div>
 
@@ -262,25 +248,17 @@ export default function Setting({
             placement="topLeft"
             content={
               <>
-                <ChromePicker
-                  color={pickerColor}
-                  onChange={(color) => setPickerColor(color.hex)}
-                />
+                <ChromePicker color={pickerColor} onChange={(color) => setPickerColor(color.hex)} />
               </>
             }
             trigger="hover"
-            onVisibleChange={(value) =>
-              !value && setTheme({ ...theme, primaryColor: pickerColor })
-            }
+            onVisibleChange={(value) => !value && setTheme({ ...theme, primaryColor: pickerColor })}
           >
             <div
               className="float-right w-14 h-5 bg-white rounded-[2px] flex justify-center items-center cursor-pointer"
               style={{ border: "1px solid gray" }}
             >
-              <div
-                className="w-12 h-3"
-                style={{ backgroundColor: pickerColor }}
-              ></div>
+              <div className="w-12 h-3" style={{ backgroundColor: pickerColor }}></div>
             </div>
           </Popover>
         </div>
@@ -305,11 +283,8 @@ export default function Setting({
               showCollapse: checked.includes("showCollapse"),
               showLogo: checked.includes("showLogo"),
               showBread: checked.includes("showBread"),
-              showBreadIcon:
-                (checked.includes("showBread") &&
-                  checked.includes("showBreadIcon")) ||
-                false,
-            });
+              showBreadIcon: (checked.includes("showBread") && checked.includes("showBreadIcon")) || false,
+            })
           }}
         >
           <div className="items-center grid grid-cols-2 gap-2">
@@ -324,7 +299,7 @@ export default function Setting({
                 >
                   {item.label}
                 </Checkbox>
-              );
+              )
             })}
           </div>
         </Checkbox.Group>
@@ -339,14 +314,14 @@ export default function Setting({
           showSearch
           className=" w-full mb-4"
           options={presetMotionOptions.map((item) => {
-            return { label: item.label, value: item.value };
+            return { label: item.label, value: item.value }
           })}
         />
 
         <Button
           onClick={() => {
-            copy(JSON.stringify(theme));
-            message.success("Copied! Now paste to config/ config.ts");
+            copy(JSON.stringify(theme))
+            message.success("Copied! Now paste to config/ config.ts")
           }}
           block
         >
@@ -357,5 +332,5 @@ export default function Setting({
         </Button>
       </Drawer>
     </>
-  );
+  )
 }

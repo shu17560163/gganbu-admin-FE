@@ -1,12 +1,9 @@
-import { Input, InputNumber, ModalProps, Select, Switch } from "antd";
-import { Modal, Form } from "antd";
-import { ReactNode } from "react";
-import {
-  createFormItems,
-  IFormConfig,
-} from "../../../components/form/formConfig";
-import { IUseSelectedItemRes } from "../../../hooks/useSelectedItem";
-import { IStaff } from "../type";
+import { Input, InputNumber, ModalProps, Select, Switch } from "antd"
+import { Modal, Form } from "antd"
+import { ReactNode } from "react"
+import { createFormItems, IFormConfig } from "../../../../components/form/formConfig"
+import { IUseSelectedItemRes } from "../../../../hooks/useSelectedItem"
+import { IStaff } from "../type"
 
 // This is for Add & Edit
 export default ({
@@ -16,19 +13,14 @@ export default ({
   ...modal
 }: ModalProps &
   IUseSelectedItemRes<IStaff> & {
-    roleOptions?: { label?: ReactNode; value?: string }[];
+    roleOptions?: { label?: ReactNode; value?: string }[]
   }) => {
   const formConfig: IFormConfig = [
     {
       label: "Name",
       required: true,
       children: (
-        <Input
-          onChange={(e) =>
-            setSelectedItem({ ...selectedItem, name: e.target.value })
-          }
-          value={selectedItem.name}
-        />
+        <Input onChange={(e) => setSelectedItem({ ...selectedItem, name: e.target.value })} value={selectedItem.name} />
       ),
     },
     {
@@ -36,9 +28,7 @@ export default ({
       required: true,
       children: (
         <Input
-          onChange={(e) =>
-            setSelectedItem({ ...selectedItem, username: e.target.value })
-          }
+          onChange={(e) => setSelectedItem({ ...selectedItem, username: e.target.value })}
           value={selectedItem.username}
         />
       ),
@@ -46,18 +36,14 @@ export default ({
     !selectedItem._id && {
       label: "Password",
       required: true,
-      children: (
-        <Input disabled placeholder="initial password will be set 1234" />
-      ),
+      children: <Input disabled placeholder="initial password will be set 1234" />,
     },
     {
       label: "Phone",
       children: (
         <InputNumber
           className=" w-full"
-          onChange={(value) =>
-            setSelectedItem({ ...selectedItem, phone: value })
-          }
+          onChange={(value) => setSelectedItem({ ...selectedItem, phone: value })}
           value={selectedItem.phone}
         />
       ),
@@ -70,7 +56,7 @@ export default ({
           className=" w-full"
           value={selectedItem.roleId}
           onChange={(value) => {
-            setSelectedItem({ ...selectedItem, roleId: value });
+            setSelectedItem({ ...selectedItem, roleId: value })
           }}
           options={roleOptions}
         />
@@ -92,10 +78,10 @@ export default ({
         />
       ),
     },
-  ];
+  ]
   return (
     <Modal {...modal}>
       <Form {...{ labelCol: { span: 5 } }}>{createFormItems(formConfig)}</Form>
     </Modal>
-  );
-};
+  )
+}

@@ -1,6 +1,6 @@
-import { useDebounceEffect } from "ahooks";
-import { DebounceOptions } from "ahooks/es/useDebounce/debounceOptions";
-import { useEffect } from "react";
+import { useDebounceEffect } from "ahooks"
+import { DebounceOptions } from "ahooks/es/useDebounce/debounceOptions"
+import { useEffect } from "react"
 
 /**
  * - used for Info page
@@ -8,24 +8,20 @@ import { useEffect } from "react";
  * - else, wait 800ms default to call fn.
  */
 
-export default function usePageInfoFilterEffect(
-  filter: object,
-  fn: VoidFunction,
-  options?: DebounceOptions
-) {
+export default function usePageInfoFilterEffect(filter: object, fn: VoidFunction, options?: DebounceOptions) {
   useEffect(() => {
     if (JSON.stringify(filter) == "{}") {
-      fn();
+      fn()
     }
-  }, [filter]);
+  }, [filter])
 
   useDebounceEffect(
     () => {
       if (JSON.stringify(filter) != "{}") {
-        fn();
+        fn()
       }
     },
     [filter],
     { wait: 800, ...options }
-  );
+  )
 }

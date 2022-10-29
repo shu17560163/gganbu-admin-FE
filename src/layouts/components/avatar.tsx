@@ -1,31 +1,30 @@
-import { Avatar as AvatarAnt, Badge, Dropdown, Input, Tooltip } from "antd";
-import { Menu, MenuProps, Modal } from "antd";
-import { Globe, Question, Bell, User } from "phosphor-react";
-import { ArrowsOut, ArrowsIn, MagnifyingGlass } from "phosphor-react";
+import { Avatar as AvatarAnt, Badge, Dropdown, Input, Tooltip } from "antd"
+import { Menu, MenuProps, Modal } from "antd"
+import { Globe, Question, Bell, User } from "phosphor-react"
+import { ArrowsOut, ArrowsIn, MagnifyingGlass } from "phosphor-react"
 
-import { useState } from "react";
-import { useThemeContext, useUserContext } from "../../context";
+import { useState } from "react"
+import { useThemeContext, useUserContext } from "../../context"
 
 export default function Avatar() {
-  const { user, setUser } = useUserContext();
-  const { theme, setTheme } = useThemeContext();
+  const { user, setUser } = useUserContext()
+  const { theme, setTheme } = useThemeContext()
 
-  const { menuStyleBgColor, menuStyle, menuStyleColor, layout, isFullscreen } =
-    theme;
+  const { menuStyleBgColor, menuStyle, menuStyleColor, layout, isFullscreen } = theme
 
-  const [showSearch, setShowSearch] = useState(false);
+  const [showSearch, setShowSearch] = useState(false)
 
   const languageMenuItem: MenuProps["items"] = [
     { label: "English", key: "english" },
     { label: "简体中文", key: "chineseSimple" },
-  ];
+  ]
 
   const Logout = async () => {
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("userInfo");
-    localStorage.removeItem("refreshToken");
-    setUser({});
-  };
+    localStorage.removeItem("userInfo")
+    localStorage.removeItem("accessToken")
+    localStorage.removeItem("refreshToken")
+    setUser({})
+  }
 
   const MenuItems: MenuProps["items"] = [
     { label: "User Profile", key: "user" },
@@ -39,8 +38,8 @@ export default function Avatar() {
               title: "Hint",
               content: "Are you sure you want to logout?",
               onOk: async () => {
-                await Logout();
-                window.location.reload();
+                await Logout()
+                window.location.reload()
               },
             })
           }
@@ -50,7 +49,7 @@ export default function Avatar() {
       ),
       key: "logout",
     },
-  ];
+  ]
   return (
     <div
       style={{
@@ -70,16 +69,8 @@ export default function Avatar() {
       className="cursor-pointer flex items-center h-full"
     >
       <div className="px-2 flex items-center hover:bg-[rgb(0,0,0,0.025)] h-full">
-        {showSearch && (
-          <Input
-            autoFocus
-            suffix={<MagnifyingGlass />}
-            onBlur={() => setShowSearch(false)}
-          />
-        )}
-        {!showSearch && (
-          <MagnifyingGlass size={26} onClick={() => setShowSearch(true)} />
-        )}
+        {showSearch && <Input autoFocus suffix={<MagnifyingGlass />} onBlur={() => setShowSearch(false)} />}
+        {!showSearch && <MagnifyingGlass size={26} onClick={() => setShowSearch(true)} />}
       </div>
 
       <Tooltip title="Help" autoAdjustOverflow>
@@ -88,17 +79,12 @@ export default function Avatar() {
         </div>
       </Tooltip>
 
-      <Tooltip
-        title={(theme.isFullscreen && "Reduction") || "Full Screen"}
-        autoAdjustOverflow
-      >
+      <Tooltip title={(theme.isFullscreen && "Reduction") || "Full Screen"} autoAdjustOverflow>
         <div
           onClick={() => setTheme({ ...theme, isFullscreen: !isFullscreen })}
           className="px-2 flex items-center hover:bg-[rgb(0,0,0,0.025)] h-full"
         >
-          {(theme.isFullscreen && <ArrowsIn size={26} />) || (
-            <ArrowsOut size={26} />
-          )}
+          {(theme.isFullscreen && <ArrowsIn size={26} />) || <ArrowsOut size={26} />}
         </div>
       </Tooltip>
 
@@ -119,11 +105,9 @@ export default function Avatar() {
       <Dropdown trigger={["hover"]} overlay={<Menu items={MenuItems} />}>
         <div className="px-2 flex items-center hover:bg-[rgb(0,0,0,0.025)]">
           <AvatarAnt size="large" icon={<User />} />
-          <div className=" whitespace-nowrap ml-3 max-w-[80px] text-ellipsis overflow-hidden">
-            {user?.name}
-          </div>
+          <div className=" whitespace-nowrap ml-3 max-w-[80px] text-ellipsis overflow-hidden">{user?.name}</div>
         </div>
       </Dropdown>
     </div>
-  );
+  )
 }

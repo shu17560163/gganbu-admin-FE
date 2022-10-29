@@ -1,37 +1,33 @@
-import { Layout } from "antd";
-import { useMemo } from "react";
-import { Outlet } from "react-router-dom";
-import { useThemeContext } from "../context";
-import { ILayoutClass } from "./utils";
-import { Sider, Header, Content, Footer } from "./layoutComponents";
+import { Layout } from "antd"
+import { useMemo } from "react"
+import { Outlet } from "react-router-dom"
+import { useThemeContext } from "../context"
+import { ILayoutClass } from "./utils"
+import { Sider, Header, Content, Footer } from "./layoutComponents"
 
 export default function MixLayout() {
-  const { theme } = useThemeContext();
-  const { fixedHeader, showTags, collapsed, menuStyle, menuStyleBgColor } =
-    theme;
+  const { theme } = useThemeContext()
+  const { fixedHeader, showTags, collapsed, menuStyle, menuStyleBgColor } = theme
 
   const layoutClass: ILayoutClass = useMemo(() => {
-    const { fixedHeader, contentWidth } = theme;
-    let content = "m-4";
-    const sider = "";
-    let header = "";
-    let headerWrapper = "";
-    header += "p-0 w-full flex justify-between items-center bg-white pr-5";
+    const { fixedHeader, contentWidth } = theme
+    let content = "m-4"
+    const sider = ""
+    let header = ""
+    let headerWrapper = ""
+    header += "p-0 w-full flex justify-between items-center bg-white pr-5"
     //
-    content += (contentWidth == "fixed" && " mx-auto px-4") || "";
-    content += (contentWidth == "fixed" && " xl:w-[1200px]") || "";
+    content += (contentWidth == "fixed" && " mx-auto px-4") || ""
+    content += (contentWidth == "fixed" && " xl:w-[1200px]") || ""
 
-    if (!fixedHeader) return { sider, content, header, headerWrapper };
+    if (!fixedHeader) return { sider, content, header, headerWrapper }
     // fixedheader
-    headerWrapper += "z-50 fixed top-0 w-full";
-    return { sider, content, header, headerWrapper };
-  }, [theme]);
+    headerWrapper += "z-50 fixed top-0 w-full"
+    return { sider, content, header, headerWrapper }
+  }, [theme])
   return (
     <Layout style={{ height: "100%" }}>
-      <Header
-        headerWrapperClass={layoutClass.headerWrapper}
-        className={layoutClass.header}
-      />
+      <Header headerWrapperClass={layoutClass.headerWrapper} className={layoutClass.header} />
       <Layout
         style={{
           minHeight: "max-content",
@@ -86,5 +82,5 @@ export default function MixLayout() {
         </Layout>
       </Layout>
     </Layout>
-  );
+  )
 }

@@ -9,39 +9,39 @@
  *
  */
 
-import { IPreset } from "../components/appear";
+import { IPreset } from "../components/appear"
 
 export interface ITheme {
-  menuStyle?: "transparent" | "dark" | "white";
-  menuStyleColor?: string;
-  menuStyleBgColor?: string;
-  primaryColor?: string;
+  menuStyle?: "transparent" | "dark" | "white"
+  menuStyleColor?: string
+  menuStyleBgColor?: string
+  primaryColor?: string
 
   // layout
-  layout?: "side" | "top" | "mix";
-  fixedHeader?: boolean;
-  stickyHeader?: boolean;
-  fixedSider?: boolean;
-  contentWidth?: "fluid" | "fixed";
+  layout?: "side" | "top" | "mix"
+  fixedHeader?: boolean
+  stickyHeader?: boolean
+  fixedSider?: boolean
+  contentWidth?: "fluid" | "fixed"
 
   // state
-  collapsed?: boolean;
-  isFullscreen?: boolean;
+  collapsed?: boolean
+  isFullscreen?: boolean
 
   // display
-  showTags?: boolean;
-  showCollapse?: boolean;
-  showLogo?: boolean;
-  showBread?: boolean;
-  showBreadIcon?: boolean;
+  showTags?: boolean
+  showCollapse?: boolean
+  showLogo?: boolean
+  showBread?: boolean
+  showBreadIcon?: boolean
 
-  showHeader?: boolean;
-  showSider?: boolean;
-  showFooter?: boolean;
+  showHeader?: boolean
+  showSider?: boolean
+  showFooter?: boolean
 
   // other
-  keepAlive?: boolean; // if open page keep alive .
-  animateName?: IPreset;
+  keepAlive?: boolean // if open page keep alive .
+  animateName?: IPreset
 }
 
 export const ThemeConfig: ITheme = {
@@ -59,4 +59,4 @@ export const ThemeConfig: ITheme = {
   showBread: true,
   showBreadIcon: true,
   animateName: "slideInTop",
-};
+}

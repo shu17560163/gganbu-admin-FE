@@ -1,15 +1,15 @@
-import { Card, Input, Table } from "antd";
-import FilterAction from "../../components/filterAction";
-import { createFormItems } from "../../components/form/formConfig";
-import { useData, useFilter, useLoading } from "../../hooks";
+import { Card, Input, Table } from "antd"
+import FilterAction from "../../components/filterAction"
+import { createFormItems } from "../../components/form/formConfig"
+import { useData, useFilter, useLoading } from "../../hooks"
 
 interface IFilter {
-  name: string;
+  name: string
 }
 const LoginLogger = () => {
-  const { filter, setFilter } = useFilter<IFilter>({ name: "" });
-  const { loading, setLoading } = useLoading(false);
-  const { data, setData } = useData();
+  const { filter, setFilter } = useFilter<IFilter>({ name: "" })
+  const { loading, setLoading } = useLoading(false)
+  const { data, setData } = useData()
   const columns = [
     {
       title: "User",
@@ -19,7 +19,7 @@ const LoginLogger = () => {
           <div className=" flex gap-2 items-center">
             <div>{record?.username}</div>
           </div>
-        );
+        )
       },
     },
     {
@@ -30,7 +30,7 @@ const LoginLogger = () => {
           <div className=" flex gap-2 items-center">
             <div>{record?.name}</div>
           </div>
-        );
+        )
       },
     },
     {
@@ -41,7 +41,7 @@ const LoginLogger = () => {
           <div className=" flex gap-2 items-center">
             <div>{record?.name}</div>
           </div>
-        );
+        )
       },
     },
     {
@@ -52,7 +52,7 @@ const LoginLogger = () => {
           <div className=" flex gap-2 items-center">
             <div>{record?.name}</div>
           </div>
-        );
+        )
       },
     },
     {
@@ -63,7 +63,7 @@ const LoginLogger = () => {
           <div className=" flex gap-2 items-center">
             <div>{record?.name}</div>
           </div>
-        );
+        )
       },
     },
     {
@@ -74,10 +74,10 @@ const LoginLogger = () => {
           <div className=" flex gap-2 items-center">
             <div>{record?.name}</div>
           </div>
-        );
+        )
       },
     },
-  ];
+  ]
   return (
     <>
       <Card className="mb-4">
@@ -89,9 +89,7 @@ const LoginLogger = () => {
               children: (
                 <Input
                   value={filter.name}
-                  onChange={(e) =>
-                    setFilter({ ...filter, name: e.target.value })
-                  }
+                  onChange={(e) => setFilter({ ...filter, name: e.target.value })}
                   placeholder="username/name/ip"
                 />
               ),
@@ -104,6 +102,6 @@ const LoginLogger = () => {
         <Table loading={loading} columns={columns} dataSource={data} />
       </Card>
     </>
-  );
-};
-export default LoginLogger;
+  )
+}
+export default LoginLogger

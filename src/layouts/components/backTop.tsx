@@ -1,6 +1,6 @@
-import { BackTop } from "antd";
+import { BackTop } from "antd"
 
-export default BackTop;
+export default BackTop
 
 /**
  *

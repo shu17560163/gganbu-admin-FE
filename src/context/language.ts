@@ -1,8 +1,8 @@
-import { createContext } from "react";
+import { createContext } from "react"
 
 export interface ILangContext {
-  isEn?: boolean;
+  isEn?: boolean
 }
-const LangContext = createContext({ isEn: false }); // initial value
+const LangContext = createContext({ isEn: false }) // initial value
 
-export { LangContext };
+export { LangContext }

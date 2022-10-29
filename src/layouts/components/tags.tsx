@@ -1,31 +1,29 @@
-import { Tag } from "antd";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useTagContext, useThemeContext } from "../../context";
-import { DndContext, useSensors, useSensor, MouseSensor } from "@dnd-kit/core";
-import { arrayMove, SortableContext } from "@dnd-kit/sortable";
-import { horizontalListSortingStrategy } from "@dnd-kit/sortable";
+import { Tag } from "antd"
+import { useLocation, useNavigate } from "react-router-dom"
+import { useTagContext, useThemeContext } from "../../context"
+import { DndContext, useSensors, useSensor, MouseSensor } from "@dnd-kit/core"
+import { arrayMove, SortableContext } from "@dnd-kit/sortable"
+import { horizontalListSortingStrategy } from "@dnd-kit/sortable"
 
-import { SortableItem } from "../../components/sort";
+import { SortableItem } from "../../components/sort"
 
 export default function Tags() {
-  const { theme } = useThemeContext();
-  const { pathname } = useLocation();
-  const { tags, setTags } = useTagContext();
-  const navigate = useNavigate();
+  const { theme } = useThemeContext()
+  const { pathname } = useLocation()
+  const { tags, setTags } = useTagContext()
+  const navigate = useNavigate()
 
-  const sensors = useSensors(
-    useSensor(MouseSensor, { activationConstraint: { distance: 10 } })
-  );
+  const sensors = useSensors(useSensor(MouseSensor, { activationConstraint: { distance: 10 } }))
 
   function handleDragEnd(event) {
-    console.log("drag end");
-    const { active, over } = event;
+    console.log("drag end")
+    const { active, over } = event
     if (active.id !== over.id) {
       setTags((items) => {
-        const oldIndex = items.findIndex((item) => item.path == active.id);
-        const newIndex = items.findIndex((item) => item.path == over.id);
-        return arrayMove(items, oldIndex, newIndex);
-      });
+        const oldIndex = items.findIndex((item) => item.path == active.id)
+        const newIndex = items.findIndex((item) => item.path == over.id)
+        return arrayMove(items, oldIndex, newIndex)
+      })
     }
   }
 
@@ -55,15 +53,12 @@ export default function Tags() {
                     key={tag.path}
                     onClick={() => navigate(tag.path)}
                     onClose={() => {
-                      const newTags = tags.filter((i) => i.path != tag.path);
-                      setTags(newTags);
-                      console.log(tags[index].path == pathname, newTags);
+                      const newTags = tags.filter((i) => i.path != tag.path)
+                      setTags(newTags)
+                      console.log(tags[index].path == pathname, newTags)
                       if (tags[index].path == pathname) {
-                        const nextRoute =
-                          tags[index + 1]?.path ||
-                          newTags[newTags.length - 1]?.path ||
-                          "/";
-                        navigate(nextRoute);
+                        const nextRoute = tags[index + 1]?.path || newTags[newTags.length - 1]?.path || "/"
+                        navigate(nextRoute)
                       }
                       // 需要跳转。关闭之后，跳转到下一个
                     }}
@@ -74,7 +69,7 @@ export default function Tags() {
                     {tag.title}
                   </Tag>
                 </SortableItem>
-              );
+              )
             })}
 
             {tags.length >= 5 && (
@@ -82,10 +77,10 @@ export default function Tags() {
                 className=" m-1 cursor-pointer"
                 color={theme.primaryColor}
                 onClick={() => {
-                  const newTags = tags.filter((i) => i?.affix);
-                  const newRoute = newTags?.[newTags.length - 1]?.path || "/";
-                  setTags(newTags);
-                  navigate(newRoute);
+                  const newTags = tags.filter((i) => i?.affix)
+                  const newRoute = newTags?.[newTags.length - 1]?.path || "/"
+                  setTags(newTags)
+                  navigate(newRoute)
                 }}
               >
                 Close all
@@ -95,5 +90,5 @@ export default function Tags() {
         </SortableContext>
       </DndContext>
     </div>
-  );
+  )
 }

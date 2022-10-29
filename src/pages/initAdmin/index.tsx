@@ -1,33 +1,31 @@
-import { Input, Button, Form } from "antd";
+import { Input, Button, Form } from "antd"
 
-import { Check, X, UserPlus } from "phosphor-react";
+import { Check, X, UserPlus } from "phosphor-react"
 
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import { createFormItems } from "../../components/form/formConfig";
+import { useState } from "react"
+import { useNavigate } from "react-router"
+import { createFormItems } from "../../components/form/formConfig"
 
 const InitAdmin = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const [data, setData] = useState({
     username: "",
     password: "",
     confirmPassword: "",
-  });
+  })
 
-  const [loading, setLoading] = useState(false); // login button loading
+  const [loading, setLoading] = useState(false) // login button loading
 
   const handleLogin = async () => {
     try {
+      console.log(data.username)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
-  const confirmPass =
-    data.password &&
-    data.confirmPassword &&
-    data.password === data.confirmPassword;
-  const canCreate = data.username && confirmPass;
+  const confirmPass = data.password && data.confirmPassword && data.password === data.confirmPassword
+  const canCreate = data.username && confirmPass
 
   return (
     // userlayout
@@ -51,9 +49,7 @@ const InitAdmin = () => {
                   children: (
                     <>
                       <div className="font-bold text-lg">New Installation</div>
-                      <div className="text-[gray]">
-                        Please create the initial administrator user.
-                      </div>
+                      <div className="text-[gray]">Please create the initial administrator user.</div>
                     </>
                   ),
                 },
@@ -64,9 +60,7 @@ const InitAdmin = () => {
                       allowClear
                       placeholder="Username"
                       value={data.username}
-                      onChange={(e) =>
-                        setData({ ...data, username: e.target.value })
-                      }
+                      onChange={(e) => setData({ ...data, username: e.target.value })}
                     />
                   ),
                 },
@@ -78,9 +72,7 @@ const InitAdmin = () => {
                       type="password"
                       placeholder="Password"
                       value={data.password}
-                      onChange={(e) =>
-                        setData({ ...data, password: e.target.value })
-                      }
+                      onChange={(e) => setData({ ...data, password: e.target.value })}
                     />
                   ),
                 },
@@ -88,18 +80,12 @@ const InitAdmin = () => {
                   label: "Confirm Password",
                   children: (
                     <Input
-                      suffix={
-                        (confirmPass && <Check color="green" size={20} />) || (
-                          <X color="red" size={20} />
-                        )
-                      }
+                      suffix={(confirmPass && <Check color="green" size={20} />) || <X color="red" size={20} />}
                       allowClear
                       type="password"
                       placeholder="Confirm Password"
                       value={data.confirmPassword}
-                      onChange={(e) =>
-                        setData({ ...data, confirmPassword: e.target.value })
-                      }
+                      onChange={(e) => setData({ ...data, confirmPassword: e.target.value })}
                     />
                   ),
                 },
@@ -124,6 +110,6 @@ const InitAdmin = () => {
         </div>
       </div>
     </div>
-  );
-};
-export default InitAdmin;
+  )
+}
+export default InitAdmin
