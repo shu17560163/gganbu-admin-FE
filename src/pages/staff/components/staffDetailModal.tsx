@@ -1,8 +1,8 @@
 import { Input, InputNumber, ModalProps, Select, Switch } from "antd"
 import { Modal, Form } from "antd"
 import { ReactNode } from "react"
-import { createFormItems, IFormConfig } from "../../../../components/form/formConfig"
-import { IUseSelectedItemRes } from "../../../../hooks/useSelectedItem"
+import { createFormItems, IFormConfig } from "../../../components/form/formConfig"
+import { IUseSelectedItemRes } from "../../../hooks/useSelectedItem"
 import { IStaff } from "../type"
 
 // This is for Add & Edit

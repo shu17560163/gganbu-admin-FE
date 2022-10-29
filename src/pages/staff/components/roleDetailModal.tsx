@@ -1,9 +1,9 @@
 import { Input, ModalProps } from "antd"
 import type { IRole } from "../type"
-import type { IUseSelectedItemRes } from "../../../../hooks/useSelectedItem"
+import type { IUseSelectedItemRes } from "../../../hooks/useSelectedItem"
 import { Modal, Tree, Form } from "antd"
-import { routesForRoleTree } from "../../../../router"
-import { createFormItems } from "../../../../components/form/formConfig"
+import { routesForRoleTree } from "../../../router"
+import { createFormItems } from "../../../components/form/formConfig"
 
 export default ({ selectedItem, setSelectedItem, ...modal }: ModalProps & IUseSelectedItemRes<IRole>) => {
   return (
