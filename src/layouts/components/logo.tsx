@@ -33,10 +33,10 @@ export default function Logo() {
     >
       {showLogo && (
         <>
-          <img src={LogoImg} alt="logo" className="w-10 h-10" />
+          {/* <img src={LogoImg} alt="logo" className="w-10 h-10" /> */}
           <>
-            <>{["mix", "top"].includes(layout) && <div className="ml-2 text-xl">Gganbu</div>}</>
-            <>{layout == "side" && <>{!collapsed && <div className="ml-2 text-xl">Gganbu</div>}</>}</>
+            <>{["mix", "top"].includes(layout) && <div className="text-3xl font-bold">Gganbu</div>}</>
+            <>{layout == "side" && <>{!collapsed && <div className="text-3xl font-bold">Gganbu</div>}</>}</>
           </>
         </>
       )}
