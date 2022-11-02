@@ -1,0 +1,35 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  Build-And-Deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - name: Install, Lint, Build
+        run: |
+          npm install
+          npm run lint
+          npm run build
+      - name: Deploy to Vercel
+        run: |
+          npm i -g vercel
+          vercel --yes --token $VERCEL_TOKEN --scope $VERCEL_SCOPE --prod
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_SCOPE: ${{ secrets.VERCEL_SCOPE }}
