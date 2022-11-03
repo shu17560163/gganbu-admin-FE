@@ -101,7 +101,7 @@ const LoginLogger = () => {
     }
   }
 
-  usePageInfoFilterEffect(filter, () => getInfo({ ...pagination, current: 1 }, 1))
+  usePageInfoFilterEffect(filter, () => getInfo({ ...pagination, current: 1 }))
 
   return (
     <>
