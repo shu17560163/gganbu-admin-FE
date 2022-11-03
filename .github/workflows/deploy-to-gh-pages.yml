@@ -3,8 +3,12 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: ["main"]
+    paths: # only files in directory src will triger the workflow
+      - "src/**"
   pull_request: # if: github.event.pull_request.merged == true
     branches: ["main"]
+    paths: # only files in directory src will triger the workflow
+      - "src/**"
   workflow_dispatch:
 
 jobs:
