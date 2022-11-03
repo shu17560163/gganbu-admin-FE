@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom"
 import { IFilter } from "./type"
 import { useTablePagination } from "../../hooks"
 import { createFormItems, IFormConfig } from "../../components/form/formConfig"
+import { useTranslation } from "react-i18next"
 
 export const statusOptions = [
   { label: "Active", value: "active" },
@@ -31,6 +32,7 @@ export default function OrderInfo() {
 
   const [data, setData] = useState([]) // table data
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const getInfo = async () => {
     setLoading(true)
@@ -94,7 +96,7 @@ export default function OrderInfo() {
 
   const formConfig: IFormConfig = [
     {
-      label: "Name",
+      label: t("SEARCH"),
       className: "mb-0",
       children: (
         <Input
@@ -106,7 +108,7 @@ export default function OrderInfo() {
       ),
     },
     {
-      label: "Status",
+      label: t("STATUS"),
       className: "mb-0",
       children: (
         <Select

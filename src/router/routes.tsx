@@ -5,6 +5,7 @@ import { IRoute } from "./type"
 import { Gauge, List, ShieldCheck, User, Printer, DiamondsFour } from "phosphor-react"
 import SuspenseWrapper from "./lazy"
 import { lazy } from "react"
+import i18n from "../config/locales"
 
 const ProductCreate = SuspenseWrapper(lazy(() => import("../pages/product/productCreate")))
 const ProductInfo = SuspenseWrapper(lazy(() => import("../pages/product/productInfo")))
@@ -60,7 +61,7 @@ export const routes: IRoute[] = [
   },
   {
     path: "/product",
-    title: "Product",
+    title: i18n.t("PRODUCT_MANAGE"),
     element: <PageView />,
     icon: <DiamondsFour />,
     children: [

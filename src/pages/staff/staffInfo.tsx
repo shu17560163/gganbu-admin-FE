@@ -12,6 +12,7 @@ import { createFormItems } from "../../components/form/formConfig"
 import { useState } from "react"
 import { User, PhoneCall } from "phosphor-react"
 import ResetPasswordModal from "./components/resetPasswordModal"
+import { useTranslation } from "react-i18next"
 
 export const statusOptions = [
   { label: "Active", value: "active" },
@@ -27,6 +28,7 @@ export default () => {
   const { data, setData } = useData<IStaff[]>()
   const { loading, setLoading } = useLoading(false)
   const [roleOptions, setRoleOptions] = useState([])
+  const { t } = useTranslation()
 
   const getInfo = async (paginationProp?: TablePaginationConfig, allRoles = 0) => {
     try {
@@ -181,7 +183,7 @@ export default () => {
         <div className="grid grid-cols-4 gap-4">
           {createFormItems([
             {
-              label: "Name",
+              label: t("SEARCH"),
               className: " mb-0",
               children: (
                 <Input
@@ -192,7 +194,7 @@ export default () => {
               ),
             },
             {
-              label: "Status",
+              label: t("STATUS"),
               className: " mb-0",
               children: (
                 <Select

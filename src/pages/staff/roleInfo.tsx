@@ -16,6 +16,7 @@ import {
   useTablePagination,
 } from "../../hooks"
 import { createFormItems } from "../../components/form/formConfig"
+import { useTranslation } from "react-i18next"
 
 export default () => {
   const { filter, setFilter } = useFilter<IFilterRole>({})
@@ -24,6 +25,7 @@ export default () => {
   const { modal, setModal } = useModal({})
   const { data, setData } = useData<IRole[]>([])
   const { loading, setLoading } = useLoading(false)
+  const { t } = useTranslation()
 
   const getInfo = async (paginationProp?: TablePaginationConfig) => {
     setLoading(true)
@@ -113,7 +115,7 @@ export default () => {
         <div className="grid grid-cols-4 gap-4">
           {createFormItems([
             {
-              label: "Name",
+              label: t("SEARCH"),
               className: "mb-0",
               children: (
                 <Input

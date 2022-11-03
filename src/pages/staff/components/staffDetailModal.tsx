@@ -1,6 +1,7 @@
 import { Input, InputNumber, ModalProps, Select, Switch } from "antd"
 import { Modal, Form } from "antd"
 import { ReactNode } from "react"
+import { useTranslation } from "react-i18next"
 import { createFormItems, IFormConfig } from "../../../components/form/formConfig"
 import { IUseSelectedItemRes } from "../../../hooks/useSelectedItem"
 import { IStaff } from "../type"
@@ -15,6 +16,7 @@ export default ({
   IUseSelectedItemRes<IStaff> & {
     roleOptions?: { label?: ReactNode; value?: string }[]
   }) => {
+  const { t } = useTranslation()
   const formConfig: IFormConfig = [
     {
       label: "Name",
@@ -63,7 +65,7 @@ export default ({
       ),
     },
     selectedItem._id && {
-      label: "Status",
+      label: t("STATUS"),
       children: (
         <Switch
           checked={selectedItem.status == "active"}
