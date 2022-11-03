@@ -23,8 +23,7 @@ jobs:
           cache: "npm"
       - name: Setup Environment
         run: |
-          export VITE_SERVER_BASE_URL=${{ secrets.VITE_SERVER_BASE_URL }}
-          echo $VITE_SERVER_BASE_URL
+          export VITE_SERVER_BASE_URL="${{ secrets.VITE_SERVER_BASE_URL }}"
       - name: Install, Lint, Build
         run: |
           npm install
