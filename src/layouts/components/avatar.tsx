@@ -1,6 +1,6 @@
 import { Avatar as AvatarAnt, Badge, Dropdown, Input, Tooltip } from "antd"
 import { Menu, MenuProps, Modal } from "antd"
-import { Globe, Question, Bell, User } from "phosphor-react"
+import { Globe, Question, Bell, User, GithubLogo } from "phosphor-react"
 import { ArrowsOut, ArrowsIn, MagnifyingGlass } from "phosphor-react"
 
 import { useState } from "react"
@@ -11,6 +11,8 @@ const languageMenuItem: MenuProps["items"] = [
   { label: "English", key: "en" },
   { label: "简体中文", key: "zh" },
 ]
+
+const iconSize = 26
 
 export default function Avatar() {
   const { user, setUser } = useUserContext()
@@ -73,12 +75,21 @@ export default function Avatar() {
     >
       <div className="px-2 flex items-center hover:bg-[rgb(0,0,0,0.025)] h-full">
         {showSearch && <Input autoFocus suffix={<MagnifyingGlass />} onBlur={() => setShowSearch(false)} />}
-        {!showSearch && <MagnifyingGlass size={26} onClick={() => setShowSearch(true)} />}
+        {!showSearch && <MagnifyingGlass size={iconSize} onClick={() => setShowSearch(true)} />}
       </div>
+
+      <Tooltip title="GitHub" autoAdjustOverflow>
+        <div
+          onClick={() => window.open("https://github.com/sanjayheaven/gganbu-admin-FE")}
+          className="px-2 flex items-center hover:bg-[rgb(0,0,0,0.025)] h-full"
+        >
+          <GithubLogo size={iconSize} />
+        </div>
+      </Tooltip>
 
       <Tooltip title="Help" autoAdjustOverflow>
         <div className="px-2 flex items-center hover:bg-[rgb(0,0,0,0.025)] h-full">
-          <Question size={26} />
+          <Question size={iconSize} />
         </div>
       </Tooltip>
 
@@ -87,14 +98,14 @@ export default function Avatar() {
           onClick={() => setTheme({ ...theme, isFullscreen: !isFullscreen })}
           className="px-2 flex items-center hover:bg-[rgb(0,0,0,0.025)] h-full"
         >
-          {(theme.isFullscreen && <ArrowsIn size={26} />) || <ArrowsOut size={26} />}
+          {(theme.isFullscreen && <ArrowsIn size={iconSize} />) || <ArrowsOut size={iconSize} />}
         </div>
       </Tooltip>
 
       <Tooltip title="Notificaitons" autoAdjustOverflow>
         <div className="px-2 flex items-center hover:bg-[rgb(0,0,0,0.025)] h-full">
           <Badge overflowCount={10} count={199}>
-            <Bell size={26} />
+            <Bell size={iconSize} />
           </Badge>
         </div>
       </Tooltip>
@@ -104,7 +115,7 @@ export default function Avatar() {
         overlay={<Menu onClick={({ key }) => i18n.changeLanguage(key)} items={languageMenuItem} />}
       >
         <div className="px-2 flex items-center hover:bg-[rgb(0,0,0,0.025)] h-full">
-          <Globe size={26} />
+          <Globe size={iconSize} />
         </div>
       </Dropdown>
 
