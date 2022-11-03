@@ -3,8 +3,12 @@ name: Deploy to AWS
 on:
   push:
     branches: ["main"]
-  pull_request:
+    paths: # only files in directory src will triger the workflow
+      - "src/*"
+  pull_request: # if: github.event.pull_request.merged == true
     branches: ["main"]
+    paths: # only files in directory src will triger the workflow
+      - "src/*"
   workflow_dispatch:
 
 jobs:
@@ -21,9 +25,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-      # - name: Setup Environment
-      #   run: |
-      #     export VITE_SERVER_BASE_URL="${{ secrets.VITE_SERVER_BASE_URL }}"
       - name: Install, Lint, Build
         run: |
           npm install

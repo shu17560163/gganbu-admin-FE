@@ -1,14 +1,10 @@
-name: Deploy to Vercel
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: ["main"]
-    paths: # only files in directory src will triger the workflow
-      - "src/*"
   pull_request: # if: github.event.pull_request.merged == true
     branches: ["main"]
-    paths: # only files in directory src will triger the workflow
-      - "src/*"
   workflow_dispatch:
 
 jobs:
@@ -30,10 +26,9 @@ jobs:
           npm install
           npm run lint
           npm run build
-      - name: Deploy to Vercel
-        run: |
-          npm i -g vercel
-          vercel --yes --token $VERCEL_TOKEN --scope $VERCEL_SCOPE --prod
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_SCOPE: ${{ secrets.VERCEL_SCOPE }}
+      # upload files to GitHub Pages
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist # The folder the action should deploy.
+
