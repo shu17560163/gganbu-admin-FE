@@ -18,7 +18,7 @@ export default function Avatar() {
   const { user, setUser } = useUserContext()
   const { theme, setTheme } = useThemeContext()
 
-  const { t, i18n } = useTranslation()
+  const { i18n } = useTranslation()
 
   const { menuStyleBgColor, menuStyle, menuStyleColor, layout, isFullscreen } = theme
 

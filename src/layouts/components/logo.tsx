@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom"
-import LogoImg from "../../assets/logo.jpeg"
 import { useThemeContext } from "../../context"
 
 export default function Logo() {

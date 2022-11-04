@@ -1,7 +1,7 @@
 import type { IInfoResponce } from "../../types"
 import type { IFilter, IProduct } from "./type"
 import { Input, TableColumnsType, TablePaginationConfig } from "antd"
-import { message, Modal } from "antd"
+import { Modal } from "antd"
 import { Card, Table, Button, Space } from "antd"
 import FilterAction from "../../components/filterAction"
 import { ProductApi } from "../../api"
@@ -20,7 +20,7 @@ import { useNavigate } from "react-router-dom"
 export default () => {
   const { filter, setFilter } = useFilter<IFilter>({})
   const { pagination, setPagination } = useTablePagination()
-  const { selectedItem, setSelectedItem } = useSelectedItem<Partial<IProduct>>({})
+  const { setSelectedItem } = useSelectedItem<Partial<IProduct>>({})
   const { modal, setModal } = useModal({})
   const { data, setData } = useData<Partial<IProduct>[]>([])
   const { loading, setLoading } = useLoading(false)
@@ -39,24 +39,6 @@ export default () => {
       setLoading(false)
       setData(items)
       setPagination({ ...pagination, ...(paginationProp || {}), total })
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const handleOk = async () => {
-    const { name } = selectedItem
-    if (!name) {
-      return message.error("Please finish all required info")
-    }
-    try {
-      if (selectedItem._id) {
-        await ProductApi.updateProduct(selectedItem._id, selectedItem)
-      } else {
-        await ProductApi.createProduct(selectedItem)
-      }
-      setModal({ ...modal, visible: false })
-      await getInfo() // reget the data
     } catch (error) {
       console.log(error)
     }

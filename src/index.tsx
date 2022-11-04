@@ -11,7 +11,7 @@ import "antd/dist/antd.variable.min.css" // theme config by ConfigProvider
 // import "@ant-design/aliyun-theme"
 
 import "./index.css"
-import React from "react"
+// import React from "react"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>

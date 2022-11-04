@@ -1,17 +1,6 @@
-import { Tabs, Input, Button, message, notification, Checkbox, Divider } from "antd"
+import { Input, Button, message, notification, Checkbox, Divider } from "antd"
 
-import {
-  User,
-  Lock,
-  EnvelopeSimple,
-  DeviceMobileSpeaker,
-  TwitterLogo,
-  FacebookLogo,
-  GoogleLogo,
-  GithubLogo,
-  Eye,
-  EyeSlash,
-} from "phosphor-react"
+import { User, Lock, TwitterLogo, FacebookLogo, GoogleLogo, GithubLogo, Eye, EyeSlash } from "phosphor-react"
 
 import { useState } from "react"
 import { useNavigate } from "react-router"
@@ -29,45 +18,17 @@ const Login = () => {
   const [username, setUsername] = useState("admin")
   const [password, setPassword] = useState("admin")
   const [showPassword, setShowPassword] = useState(false)
-  const [phone, setPhone] = useState("")
-  const [code, setCode] = useState("")
+  const [phone] = useState("")
+  const [code] = useState("")
 
-  const [loading, setLoading] = useState(false) // login button loading
-  const [tabKey, setTabKey] = useState("username")
-  const [countState, setCountState] = useState({
-    smsSendBtn: false, // 转圈圈
-    time: 60, // 倒计时60秒
-  })
+  const [loading] = useState(false) // login button loading
+  const [tabKey] = useState("username")
 
   const { theme } = useThemeContext()
   const { primaryColor } = theme
 
   const iconSize = 26
   const thirdParty = [{ icon: GoogleLogo }, { icon: TwitterLogo }, { icon: FacebookLogo }, { icon: GithubLogo }]
-
-  const getCode = async () => {
-    if (!/^\d{8}$/.test(phone)) {
-      return message.error("Invalid Phone Number")
-    }
-    try {
-      setLoading(true)
-      await StaffApi.getCode({ phone })
-      message.success("Code sent successfully")
-
-      setCountState({ smsSendBtn: true, time: 60 })
-      const interval = window.setInterval(() => {
-        if (countState.time - 1 <= 0) {
-          setCountState({ smsSendBtn: false, time: 60 })
-          window.clearInterval(interval)
-        }
-        setCountState({ smsSendBtn: true, time: countState.time - 1 })
-      }, 1000)
-    } catch (error) {
-      console.log(error)
-    } finally {
-      setLoading(false)
-    }
-  }
 
   const handleLogin = async () => {
     let res: any //{ accessToken: string; refreshToken: string }

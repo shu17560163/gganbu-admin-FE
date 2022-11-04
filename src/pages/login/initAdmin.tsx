@@ -3,18 +3,16 @@ import { Input, Button, Form } from "antd"
 import { Check, X, UserPlus } from "phosphor-react"
 
 import { useState } from "react"
-import { useNavigate } from "react-router"
 import { createFormItems } from "../../components/form/formConfig"
 
 const InitAdmin = () => {
-  const navigate = useNavigate()
   const [data, setData] = useState({
     username: "",
     password: "",
     confirmPassword: "",
   })
 
-  const [loading, setLoading] = useState(false) // login button loading
+  const [loading] = useState(false) // login button loading
 
   const handleLogin = async () => {
     try {
