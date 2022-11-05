@@ -39,47 +39,47 @@ export const routes: IRoute[] = [
       },
     ],
   },
-  {
-    path: "/order",
-    title: "Order",
-    element: <PageView />,
-    icon: <List />,
-    children: [
-      {
-        path: "/order/orderInfo",
-        title: "Order Info",
-        element: <OrderInfo />,
-        keepAlive: true,
-      },
-      {
-        path: "/order/orderDetail",
-        title: "Order Detail",
-        hidden: true,
-        element: <OrderDetail />,
-      },
-    ],
-  },
-  {
-    path: "/product",
-    title: i18n.t("PRODUCT_MANAGE"),
-    element: <PageView />,
-    icon: <DiamondsFour />,
-    children: [
-      {
-        path: "/product/productInfo",
-        title: "Product Info",
-        element: <ProductInfo />,
-        keepAlive: true,
-      },
-      {
-        path: "/product/productCreate",
-        title: "Product Create",
-        element: <ProductCreate />,
-        keepAlive: true,
-        hidden: true,
-      },
-    ],
-  },
+  // {
+  //   path: "/order",
+  //   title: "Order",
+  //   element: <PageView />,
+  //   icon: <List />,
+  //   children: [
+  //     {
+  //       path: "/order/orderInfo",
+  //       title: "Order Info",
+  //       element: <OrderInfo />,
+  //       keepAlive: true,
+  //     },
+  //     {
+  //       path: "/order/orderDetail",
+  //       title: "Order Detail",
+  //       hidden: true,
+  //       element: <OrderDetail />,
+  //     },
+  //   ],
+  // },
+  // {
+  //   path: "/product",
+  //   title: i18n.t("PRODUCT_MANAGE"),
+  //   element: <PageView />,
+  //   icon: <DiamondsFour />,
+  //   children: [
+  //     {
+  //       path: "/product/productInfo",
+  //       title: "Product Info",
+  //       element: <ProductInfo />,
+  //       keepAlive: true,
+  //     },
+  //     {
+  //       path: "/product/productCreate",
+  //       title: "Product Create",
+  //       element: <ProductCreate />,
+  //       keepAlive: true,
+  //       hidden: true,
+  //     },
+  //   ],
+  // },
   {
     path: "/staff",
     title: "Staff",
