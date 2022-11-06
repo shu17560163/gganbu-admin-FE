@@ -59,6 +59,14 @@ git clone https://github.com/sanjayheaven/gganbu-admin-FE.git
 cd gganbu-admin-FE && npm install
 ```
 
+- 修改配置
+
+  - 本地只运行前端，可以在 **.env.development** 中设置
+    ```
+    VITE_SERVER_BASE_URL=https://sanjay-huang.com/api/v1/manage
+    ```
+    <!-- - 本地运行后端，请参考 文档 -->
+
 - 运行项目
 
 ```shell
