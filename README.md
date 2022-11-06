@@ -19,7 +19,7 @@ The Frontend is developed based on [React](https://reactjs.org/)、[Vite](https:
 
 While the Backend is developed using [Node.js](https://nodejs.org/en/)、[Koa](https://koajs.com/)、[TypeScript](https://www.typescriptlang.org/)、[Redis](https://redis.io/)、[MongoDB](https://www.mongodb.com/), etc.
 
-Gganbu Admin offers a complete solution for enterprice applications, including using [RABC](https://en.wikipedia.org/wiki/Role-based_access_control) to restrict access and a lot of tools are built in, which can help to to develop Background Management System in a short time.
+Gganbu Admin offers a complete solution for enterprice applications, including using [RABC](https://en.wikipedia.org/wiki/Role-based_access_control) to restrict access and a lot of tools are built in, which can help to develop Background Management System in a short time.
 
 ## ✨ Features
 
