@@ -83,7 +83,7 @@ npm run build
 
 ## 🗒️ 更新日志
 
-[CHANGELOG](https://sanjayheaven.github.io/gganbu-admin-FE/blob/main/CHANGELOG.md)
+[CHANGELOG](https://github.com/sanjayheaven/gganbu-admin-FE/blob/main/CHANGELOG.md)
 
 ## 🛖 相关仓库
 

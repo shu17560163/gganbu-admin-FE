@@ -12,7 +12,7 @@
   "plugins": {
     "@release-it/conventional-changelog": {
       "infile": "CHANGELOG.md",
-      "header": "# Changelog",
+      "header": "# CHANGELOG",
       "preset": {
         "name": "conventionalcommits",
         "types": [
@@ -23,7 +23,7 @@
           { "type": "chore", "section": "⬆️ Chores" },
           { "type": "docs", "section": "📚 Documentation" },
           { "type": "style", "section": "💄 Styles" },
-          { "type": "refactor", "section": "🔨 Code Refactoring" },
+          { "type": "refactor", "section": "💡 Code Refactoring" },
           { "type": "test", "section": "✅ Tests" },
           { "type": "build", "section": "👷‍ Build System" },
           { "type": "ci", "section": "🔧 Continuous Integration" }

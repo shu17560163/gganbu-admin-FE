@@ -73,7 +73,7 @@ Refer to [Documentation](https://sanjayheaven.github.io/gganbu-admin-docs) for m
 
 ## 🗒️ Change Log
 
-[CHANGELOG](https://sanjayheaven.github.io/gganbu-admin-FE/blob/main/CHANGELOG.md)
+[CHANGELOG](https://github.com/sanjayheaven/gganbu-admin-FE/blob/main/CHANGELOG.md)
 
 ## 🛖 Related Repos
 
