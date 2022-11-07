@@ -29,7 +29,7 @@ Gganbu Admin offers a complete solution for enterprice applications, including u
 - 🌐 **International**: Built-in i18n solution
 - 🎨 **Theming**: Customizable theme with simple config
 - 🛠️ **Solution**: Rich scenario models and diverse tool use cases
-- 🛡️ **Authority**: Manage use access using on **RBAC**
+- 🛡️ **Authority**: Manage use access using on **RABC**
 
 ## 💻 Preview
 
