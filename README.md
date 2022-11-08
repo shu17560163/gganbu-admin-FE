@@ -37,7 +37,7 @@ Super Admin(which can be set initially)
 
 Account: **admin** Password: **admin**
 
-- <a href="https://sanjay-huang.com" target="_blank">AWS Site</a> | <a href="https://gganbu-admin-fe.vercel.app" target="_blank">Vercel Site</a> | <a href="https://sanjayheaven.github.io/gganbu-admin-FE" target="_blank">GitHub Pages Site</a>
+- <a href="https://gganbu-admin.com" target="_blank">AWS Site</a> | <a href="https://gganbu-admin-fe.vercel.app" target="_blank">Vercel Site</a> | <a href="https://sanjayheaven.github.io/gganbu-admin-FE" target="_blank">GitHub Pages Site</a>
 
 - [Documentation](https://sanjayheaven.github.io/gganbu-admin-docs)
 

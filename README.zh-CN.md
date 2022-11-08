@@ -39,7 +39,7 @@ Gganbu Admin 提供了一个完整的中后台解决方案，包括封装常用�
 
 账号: **admin** 密码: **admin**
 
-- <a href="https://sanjay-huang.com" target="_blank">AWS 站点</a> | <a href="https://gganbu-admin-fe.vercel.app" target="_blank">Vercel 站点</a> | <a href="https://sanjayheaven.github.io/gganbu-admin-FE" target="_blank">GitHub Pages 站点</a>
+- <a href="https://gganbu-admin.com" target="_blank">AWS 站点</a> | <a href="https://gganbu-admin-fe.vercel.app" target="_blank">Vercel 站点</a> | <a href="https://sanjayheaven.github.io/gganbu-admin-FE" target="_blank">GitHub Pages 站点</a>
 
 - [文档地址](https://sanjayheaven.github.io/gganbu-admin-docs)
 
@@ -63,7 +63,7 @@ cd gganbu-admin-FE && npm install
 
   - 本地只运行前端，可以在 **.env.development** 中设置
     ```
-    VITE_SERVER_BASE_URL=https://sanjay-huang.com/api/v1/manage
+    VITE_SERVER_BASE_URL=https://gganbu-admin.com/api/v1/manage
     ```
     <!-- - 本地运行后端，请参考 文档 -->
 
