@@ -52,7 +52,7 @@ const Login = () => {
       }
       localStorage.setItem("accessToken", res.accessToken)
       localStorage.setItem("refreshToken", res.refreshToken)
-      navigate("/")
+      navigate("/", { replace: true })
       setTimeout(() => {
         notification.success({
           message: "👏👏👏Welcome👏👏👏",
