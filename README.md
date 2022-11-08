@@ -4,7 +4,7 @@
 
 <div align="center">
 
-An out-of-box Background Management System based on **RABC**
+An out-of-box Background Management System based on **RBAC**
 
 <!-- [![npm](https://img.shields.io/npm/v/simple-js-export)](https://www.npmjs.com/package/simple-js-export)
 ![npm](https://img.shields.io/npm/dw/simple-js-export) -->
@@ -13,13 +13,13 @@ An out-of-box Background Management System based on **RABC**
 
 </div>
 
-Gganbu Admin is an out-of-box Background Management System based on **RABC**.
+Gganbu Admin is an out-of-box Background Management System based on **RBAC**.
 
 The Frontend is developed based on [React](https://reactjs.org/)、[Vite](https://vitejs.dev/)、[TypeScript](https://www.typescriptlang.org/)、[Ant Design](https://ant.design/)、[Tailwind CSS](https://tailwindcss.com/), etc.
 
 While the Backend is developed using [Node.js](https://nodejs.org/en/)、[Koa](https://koajs.com/)、[TypeScript](https://www.typescriptlang.org/)、[Redis](https://redis.io/)、[MongoDB](https://www.mongodb.com/), etc.
 
-Gganbu Admin offers a complete solution for enterprice applications, including using [RABC](https://en.wikipedia.org/wiki/Role-based_access_control) to restrict access and a lot of tools are built in, which can help to develop Background Management System in a short time.
+Gganbu Admin offers a complete solution for enterprice applications, including using [RBAC](https://en.wikipedia.org/wiki/Role-based_access_control) to restrict access and a lot of tools are built in, which can help to develop Background Management System in a short time.
 
 ## ✨ Features
 
@@ -29,7 +29,7 @@ Gganbu Admin offers a complete solution for enterprice applications, including u
 - 🌐 **International**: Built-in i18n solution
 - 🎨 **Theming**: Customizable theme with simple config
 - 🛠️ **Solution**: Rich scenario models and diverse tool use cases
-- 🛡️ **Authority**: Manage use access using on **RABC**
+- 🛡️ **Authority**: Manage use access using on **RBAC**
 
 ## 💻 Preview
 
