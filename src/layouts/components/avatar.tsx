@@ -5,6 +5,7 @@ import { ArrowsOut, ArrowsIn, MagnifyingGlass } from "phosphor-react"
 
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
+import { lookupLocalStorage } from "../../config/locales"
 import { useThemeContext, useUserContext } from "../../context"
 
 const languageMenuItem: MenuProps["items"] = [
@@ -112,7 +113,16 @@ export default function Avatar() {
 
       <Dropdown
         trigger={["hover"]}
-        overlay={<Menu onClick={({ key }) => i18n.changeLanguage(key)} items={languageMenuItem} />}
+        overlay={
+          <Menu
+            onClick={({ key }) => {
+              i18n.changeLanguage(key)
+              localStorage.setItem(lookupLocalStorage, key) // based on LanguageDetector
+              window.location.reload()
+            }}
+            items={languageMenuItem}
+          />
+        }
       >
         <div className="px-2 flex items-center hover:bg-[rgb(0,0,0,0.025)] h-full">
           <Globe size={iconSize} />

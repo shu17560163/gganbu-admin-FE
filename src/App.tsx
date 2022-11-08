@@ -15,6 +15,10 @@ import "nprogress/nprogress.css"
 import "./config/antd"
 import "./config/locales"
 
+import zhCN from "antd/es/locale/zh_CN"
+import { useTranslation } from "react-i18next"
+import { localLanguage } from "./config/locales"
+
 /**
  * here is the entry of router.
  * according to the auth to set the accessible route
@@ -33,6 +37,8 @@ const RouterAuth = () => {
   const authRoutesWrapper = createRoutesWrapper(authRoutes)
   console.log(authRoutes, authRoutesWrapper, "看看对应的路由")
   const Element = useRoutes(authRoutesWrapper)
+
+  const { t } = useTranslation()
 
   const { pathname } = location
 
@@ -95,7 +101,7 @@ const RouterAuth = () => {
 export default function App() {
   return (
     <ThemeContextProvider>
-      <AntdConfigProvider>
+      <AntdConfigProvider locale={localLanguage === "zh" && zhCN}>
         <UserContextProvider>
           <TagContextProvider>
             <div className="h-screen">

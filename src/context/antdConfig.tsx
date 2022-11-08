@@ -1,14 +1,18 @@
+import type { ConfigProviderProps } from "antd/lib/config-provider"
 import { ConfigProvider } from "antd"
-import { ReactElement } from "react"
 import { useThemeContext } from "./theme"
 import { getPopupContainer } from "../config/antd"
 
-export const AntdConfigProvider = (props: { children: ReactElement }) => {
+export const AntdConfigProvider = ({ children, locale }: ConfigProviderProps) => {
   const { theme } = useThemeContext()
   ConfigProvider.config({
     theme: {
       primaryColor: theme.primaryColor,
     },
   })
-  return <ConfigProvider getPopupContainer={getPopupContainer}>{props.children}</ConfigProvider>
+  return (
+    <ConfigProvider locale={locale} getPopupContainer={getPopupContainer}>
+      {children}
+    </ConfigProvider>
+  )
 }
